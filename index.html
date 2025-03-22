@@ -1,0 +1,2577 @@
+<!DOCTYPE html>
+<html lang="en-US" class="no-js">
+<head><script src="//archive.org/includes/athena.js" type="text/javascript"></script>
+    <script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app212.us.archive.org';v.server_ms=538;archive_analytics.send_pageview({});});</script>
+    <script type="text/javascript" src="https://web-static.archive.org/_static/js/bundle-playback.js?v=msCHzjBE" charset="utf-8"></script>
+    <script type="text/javascript" src="https://web-static.archive.org/_static/js/wombat.js?v=txqj7nKC" charset="utf-8"></script>
+    <script>window.RufflePlayer=window.RufflePlayer||{};window.RufflePlayer.config={"autoplay":"on","unmuteOverlay":"hidden"};</script>
+    <script type="text/javascript" src="https://web-static.archive.org/_static/js/ruffle/ruffle.js"></script>
+    <script type="text/javascript">
+      __wm.init("https://web.archive.org/web");
+      __wm.wombat("http://labs.hyperandroid.com/efficient-webgl-stroking","20171227012243","https://web.archive.org/","web","https://web-static.archive.org/_static/",
+        "1514337763");
+    </script>
+    <link rel="stylesheet" type="text/css" href="https://web-static.archive.org/_static/css/banner-styles.css?v=p7PEIJWi" />
+    <link rel="stylesheet" type="text/css" href="https://web-static.archive.org/_static/css/iconochive.css?v=3PDvdIFv" />
+    <!-- End Wayback Rewrite JS Include -->
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//web.archive.org/web/20171227012243/http://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-17485141-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="profile" href="http://gmpg.org/xfn/11">
+    <link rel="pingback" href="http://labs.hyperandroid.com/xmlrpc.php">
+    <!--[if lt IE 9]>
+    <script src="http://labs.hyperandroid.com/wp-content/themes/twentyfifteen/js/html5.js"></script>
+    <![endif]-->
+    <script>(function(html){html.className = html.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>
+    <title>Efficient WebGL stroking | Ibon Tolosana</title>
+    <link rel="alternate" type="application/rss+xml" title="Ibon Tolosana » Feed" href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/feed"/>
+    <link rel="alternate" type="application/rss+xml" title="Ibon Tolosana » Comments Feed" href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/comments/feed"/>
+    <link rel="alternate" type="application/rss+xml" title="Ibon Tolosana » Efficient WebGL stroking Comments Feed" href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/efficient-webgl-stroking/feed"/>
+    <script type="text/javascript">
+      window._wpemojiSettings = {"baseUrl":"https:\/\/web.archive.org\/web\/20171227012243\/http:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"https:\/\/web.archive.org\/web\/20171227012243\/http:\/\/labs.hyperandroid.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.2.18"}};
+      !function(a,b,c){function d(a){var c=b.createElement("canvas"),d=c.getContext&&c.getContext("2d");return d&&d.fillText?(d.textBaseline="top",d.font="600 32px Arial","flag"===a?(d.fillText(String.fromCharCode(55356,56812,55356,56807),0,0),c.toDataURL().length>3e3):(d.fillText(String.fromCharCode(55357,56835),0,0),0!==d.getImageData(16,16,1,1).data[0])):!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g;c.supports={simple:d("simple"),flag:d("flag")},c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.simple&&c.supports.flag||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+    </script>
+    <style type="text/css">
+        img.wp-smiley,
+        img.emoji {
+            display: inline !important;
+            border: none !important;
+            box-shadow: none !important;
+            height: 1em !important;
+            width: 1em !important;
+            margin: 0 .07em !important;
+            vertical-align: -0.1em !important;
+            background: none !important;
+            padding: 0 !important;
+        }
+    </style>
+    <link rel="stylesheet" id="twentyfifteen-fonts-css" href="//web.archive.org/web/20171227012243cs_/http://fonts.googleapis.com/css?family=Noto+Sans%3A400italic%2C700italic%2C400%2C700%7CNoto+Serif%3A400italic%2C700italic%2C400%2C700%7CInconsolata%3A400%2C700&amp;subset=latin%2Clatin-ext" type="text/css" media="all"/>
+    <link rel="stylesheet" id="genericons-css" href="https://web.archive.org/web/20171227012243cs_/http://labs.hyperandroid.com/wp-content/themes/twentyfifteen/genericons/genericons.css?ver=3.2" type="text/css" media="all"/>
+    <link rel="stylesheet" id="twentyfifteen-style-css" href="https://web.archive.org/web/20171227012243cs_/http://labs.hyperandroid.com/wp-content/themes/twentyfifteen/style.css?ver=4.2.18" type="text/css" media="all"/>
+    <style id="twentyfifteen-style-inline-css" type="text/css">
+        /* Color Scheme */
+
+        /* Background Color */
+        body {
+            background-color: #e9f2f9;
+        }
+
+        /* Sidebar Background Color */
+        body:before,
+        .site-header {
+            background-color: #55c3dc;
+        }
+
+        /* Box Background Color */
+        .post-navigation,
+        .pagination,
+        .secondary,
+        .site-footer,
+        .hentry,
+        .page-header,
+        .page-content,
+        .comments-area,
+        .widecolumn {
+            background-color: #ffffff;
+        }
+
+        /* Box Background Color */
+        button,
+        input[type="button"],
+        input[type="reset"],
+        input[type="submit"],
+        .pagination .prev,
+        .pagination .next,
+        .widget_calendar tbody a,
+        .widget_calendar tbody a:hover,
+        .widget_calendar tbody a:focus,
+        .page-links a,
+        .page-links a:hover,
+        .page-links a:focus,
+        .sticky-post {
+            color: #ffffff;
+        }
+
+        /* Main Text Color */
+        button,
+        input[type="button"],
+        input[type="reset"],
+        input[type="submit"],
+        .pagination .prev,
+        .pagination .next,
+        .widget_calendar tbody a,
+        .page-links a,
+        .sticky-post {
+            background-color: #22313f;
+        }
+
+        /* Main Text Color */
+        body,
+        blockquote cite,
+        blockquote small,
+        a,
+        .dropdown-toggle:after,
+        .image-navigation a:hover,
+        .image-navigation a:focus,
+        .comment-navigation a:hover,
+        .comment-navigation a:focus,
+        .widget-title,
+        .entry-footer a:hover,
+        .entry-footer a:focus,
+        .comment-metadata a:hover,
+        .comment-metadata a:focus,
+        .pingback .edit-link a:hover,
+        .pingback .edit-link a:focus,
+        .comment-list .reply a:hover,
+        .comment-list .reply a:focus,
+        .site-info a:hover,
+        .site-info a:focus {
+            color: #22313f;
+        }
+
+        /* Main Text Color */
+        .entry-content a,
+        .entry-summary a,
+        .page-content a,
+        .comment-content a,
+        .pingback .comment-body > a,
+        .author-description a,
+        .taxonomy-description a,
+        .textwidget a,
+        .entry-footer a:hover,
+        .comment-metadata a:hover,
+        .pingback .edit-link a:hover,
+        .comment-list .reply a:hover,
+        .site-info a:hover {
+            border-color: #22313f;
+        }
+
+        /* Secondary Text Color */
+        button:hover,
+        button:focus,
+        input[type="button"]:hover,
+        input[type="button"]:focus,
+        input[type="reset"]:hover,
+        input[type="reset"]:focus,
+        input[type="submit"]:hover,
+        input[type="submit"]:focus,
+        .pagination .prev:hover,
+        .pagination .prev:focus,
+        .pagination .next:hover,
+        .pagination .next:focus,
+        .widget_calendar tbody a:hover,
+        .widget_calendar tbody a:focus,
+        .page-links a:hover,
+        .page-links a:focus {
+            background-color: #22313f; /* Fallback for IE7 and IE8 */
+            background-color: rgba( 34, 49, 63, 0.7);
+        }
+
+        /* Secondary Text Color */
+        blockquote,
+        a:hover,
+        a:focus,
+        .main-navigation .menu-item-description,
+        .post-navigation .meta-nav,
+        .post-navigation a:hover .post-title,
+        .post-navigation a:focus .post-title,
+        .image-navigation,
+        .image-navigation a,
+        .comment-navigation,
+        .comment-navigation a,
+        .widget,
+        .author-heading,
+        .entry-footer,
+        .entry-footer a,
+        .taxonomy-description,
+        .page-links > .page-links-title,
+        .entry-caption,
+        .comment-author,
+        .comment-metadata,
+        .comment-metadata a,
+        .pingback .edit-link,
+        .pingback .edit-link a,
+        .post-password-form label,
+        .comment-form label,
+        .comment-notes,
+        .comment-awaiting-moderation,
+        .logged-in-as,
+        .form-allowed-tags,
+        .no-comments,
+        .site-info,
+        .site-info a,
+        .wp-caption-text,
+        .gallery-caption,
+        .comment-list .reply a,
+        .widecolumn label,
+        .widecolumn .mu_register label {
+            color: #22313f; /* Fallback for IE7 and IE8 */
+            color: rgba( 34, 49, 63, 0.7);
+        }
+
+        /* Secondary Text Color */
+        blockquote,
+        .logged-in-as a:hover,
+        .comment-author a:hover {
+            border-color: #22313f; /* Fallback for IE7 and IE8 */
+            border-color: rgba( 34, 49, 63, 0.7);
+        }
+
+        /* Border Color */
+        hr,
+        .dropdown-toggle:hover,
+        .dropdown-toggle:focus {
+            background-color: #22313f; /* Fallback for IE7 and IE8 */
+            background-color: rgba( 34, 49, 63, 0.1);
+        }
+
+        /* Border Color */
+        pre,
+        abbr[title],
+        table,
+        th,
+        td,
+        input,
+        textarea,
+        .main-navigation ul,
+        .main-navigation li,
+        .post-navigation,
+        .post-navigation div + div,
+        .pagination,
+        .comment-navigation,
+        .widget li,
+        .widget_categories .children,
+        .widget_nav_menu .sub-menu,
+        .widget_pages .children,
+        .site-header,
+        .site-footer,
+        .hentry + .hentry,
+        .author-info,
+        .entry-content .page-links a,
+        .page-links > span,
+        .page-header,
+        .comments-area,
+        .comment-list + .comment-respond,
+        .comment-list article,
+        .comment-list .pingback,
+        .comment-list .trackback,
+        .comment-list .reply a,
+        .no-comments {
+            border-color: #22313f; /* Fallback for IE7 and IE8 */
+            border-color: rgba( 34, 49, 63, 0.1);
+        }
+
+        /* Border Focus Color */
+        a:focus,
+        button:focus,
+        input:focus {
+            outline-color: #22313f; /* Fallback for IE7 and IE8 */
+            outline-color: rgba( 34, 49, 63, 0.3);
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: #22313f; /* Fallback for IE7 and IE8 */
+            border-color: rgba( 34, 49, 63, 0.3);
+        }
+
+        /* Sidebar Link Color */
+        .secondary-toggle:before {
+            color: #ffffff;
+        }
+
+        .site-title a,
+        .site-description {
+            color: #ffffff;
+        }
+
+        /* Sidebar Text Color */
+        .site-title a:hover,
+        .site-title a:focus {
+            color: rgba( 255, 255, 255, 0.7);
+        }
+
+        /* Sidebar Border Color */
+        .secondary-toggle {
+            border-color: #ffffff; /* Fallback for IE7 and IE8 */
+            border-color: rgba( 255, 255, 255, 0.1);
+        }
+
+        /* Sidebar Border Focus Color */
+        .secondary-toggle:hover,
+        .secondary-toggle:focus {
+            border-color: #ffffff; /* Fallback for IE7 and IE8 */
+            border-color: rgba( 255, 255, 255, 0.3);
+        }
+
+        .site-title a {
+            outline-color: #ffffff; /* Fallback for IE7 and IE8 */
+            outline-color: rgba( 255, 255, 255, 0.3);
+        }
+
+        /* Meta Background Color */
+        .entry-footer {
+            background-color: #f1f1f1;
+        }
+
+        @media screen and (min-width: 38.75em) {
+            /* Main Text Color */
+            .page-header {
+                border-color: #22313f;
+            }
+        }
+
+        @media screen and (min-width: 59.6875em) {
+            /* Make sure its transparent on desktop */
+            .site-header,
+            .secondary {
+                background-color: transparent;
+            }
+
+            /* Sidebar Background Color */
+            .widget button,
+            .widget input[type="button"],
+            .widget input[type="reset"],
+            .widget input[type="submit"],
+            .widget_calendar tbody a,
+            .widget_calendar tbody a:hover,
+            .widget_calendar tbody a:focus {
+                color: #55c3dc;
+            }
+
+            /* Sidebar Link Color */
+            .secondary a,
+            .dropdown-toggle:after,
+            .widget-title,
+            .widget blockquote cite,
+            .widget blockquote small {
+                color: #ffffff;
+            }
+
+            .widget button,
+            .widget input[type="button"],
+            .widget input[type="reset"],
+            .widget input[type="submit"],
+            .widget_calendar tbody a {
+                background-color: #ffffff;
+            }
+
+            .textwidget a {
+                border-color: #ffffff;
+            }
+
+            /* Sidebar Text Color */
+            .secondary a:hover,
+            .secondary a:focus,
+            .main-navigation .menu-item-description,
+            .widget,
+            .widget blockquote,
+            .widget .wp-caption-text,
+            .widget .gallery-caption {
+                color: rgba( 255, 255, 255, 0.7);
+            }
+
+            .widget button:hover,
+            .widget button:focus,
+            .widget input[type="button"]:hover,
+            .widget input[type="button"]:focus,
+            .widget input[type="reset"]:hover,
+            .widget input[type="reset"]:focus,
+            .widget input[type="submit"]:hover,
+            .widget input[type="submit"]:focus,
+            .widget_calendar tbody a:hover,
+            .widget_calendar tbody a:focus {
+                background-color: rgba( 255, 255, 255, 0.7);
+            }
+
+            .widget blockquote {
+                border-color: rgba( 255, 255, 255, 0.7);
+            }
+
+            /* Sidebar Border Color */
+            .main-navigation ul,
+            .main-navigation li,
+            .widget input,
+            .widget textarea,
+            .widget table,
+            .widget th,
+            .widget td,
+            .widget pre,
+            .widget li,
+            .widget_categories .children,
+            .widget_nav_menu .sub-menu,
+            .widget_pages .children,
+            .widget abbr[title] {
+                border-color: rgba( 255, 255, 255, 0.1);
+            }
+
+            .dropdown-toggle:hover,
+            .dropdown-toggle:focus,
+            .widget hr {
+                background-color: rgba( 255, 255, 255, 0.1);
+            }
+
+            .widget input:focus,
+            .widget textarea:focus {
+                border-color: rgba( 255, 255, 255, 0.3);
+            }
+
+            .sidebar a:focus,
+            .dropdown-toggle:focus {
+                outline-color: rgba( 255, 255, 255, 0.3);
+            }
+        }
+
+        /* Custom Header Background Color */
+        body:before,
+        .site-header {
+            background-color: #105080;
+        }
+
+        @media screen and (min-width: 59.6875em) {
+            .site-header,
+            .secondary {
+                background-color: transparent;
+            }
+
+            .widget button,
+            .widget input[type="button"],
+            .widget input[type="reset"],
+            .widget input[type="submit"],
+            .widget_calendar tbody a,
+            .widget_calendar tbody a:hover,
+            .widget_calendar tbody a:focus {
+                color: #105080;
+            }
+        }
+
+    </style>
+    <!--[if lt IE 9]>
+    <link rel='stylesheet' id='twentyfifteen-ie-css'  href='http://labs.hyperandroid.com/wp-content/themes/twentyfifteen/css/ie.css?ver=20141010' type='text/css' media='all' />
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel='stylesheet' id='twentyfifteen-ie7-css'  href='http://labs.hyperandroid.com/wp-content/themes/twentyfifteen/css/ie7.css?ver=20141010' type='text/css' media='all' />
+    <![endif]-->
+    <link rel="stylesheet" id="wpsnw-styles-css" href="https://web.archive.org/web/20171227012243cs_/http://labs.hyperandroid.com/wp-content/plugins/wp-social-networks-widget/assets/css/app.css?ver=2.0.0" type="text/css" media="all"/>
+    <link rel="stylesheet" id="A2A_SHARE_SAVE-css" href="https://web.archive.org/web/20171227012243cs_/http://labs.hyperandroid.com/wp-content/plugins/add-to-any/addtoany.min.css?ver=1.9" type="text/css" media="all"/>
+    <script type="text/javascript" src="https://web.archive.org/web/20171227012243js_/http://labs.hyperandroid.com/wp-includes/js/jquery/jquery.js?ver=1.11.2"></script>
+    <script type="text/javascript" src="https://web.archive.org/web/20171227012243js_/http://labs.hyperandroid.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1"></script>
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://labs.hyperandroid.com/xmlrpc.php?rsd"/>
+    <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://labs.hyperandroid.com/wp-includes/wlwmanifest.xml"/>
+    <link rel="prev" title="Finite State Machine" href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/finite-state-machine"/>
+    <link rel="next" title="Android NDK with multiple pre-built libraries" href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/android-ndk-with-multiple-pre-built-libraries"/>
+    <meta name="generator" content="WordPress 4.2.18"/>
+    <link rel="canonical" href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/efficient-webgl-stroking"/>
+    <link rel="shortlink" href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/?p=1206"/>
+
+    <script type="text/javascript"><!--
+    var a2a_config=a2a_config||{},wpa2a={done:false,html_done:false,script_ready:false,script_load:function(){var a=document.createElement('script'),s=document.getElementsByTagName('script')[0];a.type='text/javascript';a.async=true;a.src='https://web.archive.org/web/20171227012243/http://static.addtoany.com/menu/page.js';s.parentNode.insertBefore(a,s);wpa2a.script_load=function(){};},script_onready:function(){if(a2a.type=='page'){wpa2a.script_ready=true;if(wpa2a.html_done)wpa2a.init();}},init:function(){for(var i=0,el,target,targets=wpa2a.targets,length=targets.length;i<length;i++){el=document.getElementById('wpa2a_'+(i+1));target=targets[i];a2a_config.linkname=target.title;a2a_config.linkurl=target.url;if(el){a2a.init('page',{target:el});el.id='';}wpa2a.done=true;}wpa2a.targets=[];}};a2a_config.callbacks=a2a_config.callbacks||[];a2a_config.callbacks.push({ready:wpa2a.script_onready});
+    //--></script>
+
+    <!-- START: Syntax Highlighter ComPress -->
+    <script type="text/javascript" src="https://web.archive.org/web/20171227012243js_/http://labs.hyperandroid.com/wp-content/plugins/syntax-highlighter-compress/scripts/shCore.js"></script>
+    <script type="text/javascript" src="https://web.archive.org/web/20171227012243js_/http://labs.hyperandroid.com/wp-content/plugins/syntax-highlighter-compress/scripts/shAutoloader.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://web.archive.org/web/20171227012243cs_/http://labs.hyperandroid.com/wp-content/plugins/syntax-highlighter-compress/styles/shCoreEmacs.css"/>
+    <!-- END: Syntax Highlighter ComPress -->
+
+    <style type="text/css" id="custom-background-css">
+        body.custom-background { background-color: #efefef; }
+    </style>
+</head>
+
+<body class="single single-post postid-1206 single-format-standard custom-background"><!-- BEGIN WAYBACK TOOLBAR INSERT -->
+<script>__wm.rw(0);</script>
+<div id="wm-ipp-base" lang="en" style="display:none;direction:ltr;" toolbar-mode="auto">
+    <div id="wm-ipp" style="position:fixed;left:0;top:0;right:0;">
+        <div id="donato" style="position:relative;width:100%;">
+            <div id="donato-base">
+                <iframe id="donato-if" src="https://archive.org/includes/donate.php?as_page=1&amp;platform=wb&amp;referer=https%3A//web.archive.org/web/20171227012243/http%3A//labs.hyperandroid.com/efficient-webgl-stroking"
+                        scrolling="no" frameborder="0" style="width:100%; height:100%">
+                </iframe>
+            </div>
+        </div><div id="wm-ipp-inside">
+        <div id="wm-toolbar" style="position:relative;display:flex;flex-flow:row nowrap;justify-content:space-between;">
+            <div id="wm-logo" style="/*width:110px;*/padding-top:12px;">
+                <a href="/web/" title="Wayback Machine home page"><img src="https://web-static.archive.org/_static/images/toolbar/wayback-toolbar-logo-200.png" srcset="https://web-static.archive.org/_static/images/toolbar/wayback-toolbar-logo-100.png, https://web-static.archive.org/_static/images/toolbar/wayback-toolbar-logo-150.png 1.5x, https://web-static.archive.org/_static/images/toolbar/wayback-toolbar-logo-200.png 2x" alt="Wayback Machine" style="width:100px" border="0" /></a>
+            </div>
+            <div class="c" style="display:flex;flex-flow:column nowrap;justify-content:space-between;flex:1;">
+                <form class="u" style="display:flex;flex-direction:row;flex-wrap:nowrap;" target="_top" method="get" action="/web/submit" name="wmtb" id="wmtb"><input type="text" name="url" id="wmtbURL" value="http://labs.hyperandroid.com/efficient-webgl-stroking" onfocus="this.focus();this.select();" style="flex:1;"/><input type="hidden" name="type" value="replay" /><input type="hidden" name="date" value="20171227012243" /><input type="submit" value="Go" />
+                </form>
+                <div style="display:flex;flex-flow:row nowrap;align-items:flex-end;">
+                    <div class="s" id="wm-nav-captures" style="flex:1;">
+                        <a class="t" href="/web/20171227012243*/http://labs.hyperandroid.com/efficient-webgl-stroking" title="See a list of every capture for this URL">29 captures</a>
+                        <div class="r" title="Timespan for captures of this URL">12 Mar 2015 - 08 Nov 2020</div>
+                    </div>
+                    <div class="k">
+                        <a href="" id="wm-graph-anchor">
+                            <div id="wm-ipp-sparkline" title="Explore captures for this URL" style="position: relative">
+                                <canvas id="wm-sparkline-canvas" width="750" height="27" border="0"></canvas>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="n">
+                <table>
+                    <tbody>
+                    <!-- NEXT/PREV MONTH NAV AND MONTH INDICATOR -->
+                    <tr class="m">
+                        <td class="b" nowrap="nowrap"><a href="https://web.archive.org/web/20171114144720/http://labs.hyperandroid.com:80/efficient-webgl-stroking" title="14 Nov 2017"><strong>Nov</strong></a></td>
+                        <td class="c" id="displayMonthEl" title="You are here: 01:22:43 Dec 27, 2017">DEC</td>
+                        <td class="f" nowrap="nowrap"><a href="https://web.archive.org/web/20201108113129/http://labs.hyperandroid.com/efficient-webgl-stroking" title="08 Nov 2020"><strong>Nov</strong></a></td>
+                    </tr>
+                    <!-- NEXT/PREV CAPTURE NAV AND DAY OF MONTH INDICATOR -->
+                    <tr class="d">
+                        <td class="b" nowrap="nowrap"><a href="https://web.archive.org/web/20171217012844/http://labs.hyperandroid.com:80/efficient-webgl-stroking" title="01:28:44 Dec 17, 2017"><img src="https://web-static.archive.org/_static/images/toolbar/wm_tb_prv_on.png" alt="Previous capture" width="14" height="16" border="0" /></a></td>
+                        <td class="c" id="displayDayEl" style="width:34px;font-size:22px;white-space:nowrap;" title="You are here: 01:22:43 Dec 27, 2017">27</td>
+                        <td class="f" nowrap="nowrap"><a href="https://web.archive.org/web/20201108113129/http://labs.hyperandroid.com/efficient-webgl-stroking" title="11:31:29 Nov 08, 2020"><img src="https://web-static.archive.org/_static/images/toolbar/wm_tb_nxt_on.png" alt="Next capture" width="14" height="16" border="0" /></a></td>
+                    </tr>
+                    <!-- NEXT/PREV YEAR NAV AND YEAR INDICATOR -->
+                    <tr class="y">
+                        <td class="b" nowrap="nowrap"><a href="https://web.archive.org/web/20161128183000/http://labs.hyperandroid.com:80/efficient-webgl-stroking" title="28 Nov 2016"><strong>2016</strong></a></td>
+                        <td class="c" id="displayYearEl" title="You are here: 01:22:43 Dec 27, 2017">2017</td>
+                        <td class="f" nowrap="nowrap"><a href="https://web.archive.org/web/20201108113129/http://labs.hyperandroid.com/efficient-webgl-stroking" title="08 Nov 2020"><strong>2020</strong></a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="r" style="display:flex;flex-flow:column nowrap;align-items:flex-end;justify-content:space-between;">
+                <div id="wm-btns" style="text-align:right;height:23px;">
+                <span class="xxs">
+          <div id="wm-save-snapshot-success">success</div>
+          <div id="wm-save-snapshot-fail">fail</div>
+          <a id="wm-save-snapshot-open" href="#" title="Share via My Web Archive" >
+            <span class="iconochive-web"></span>
+          </a>
+          <a href="https://archive.org/account/login.php" title="Sign In" id="wm-sign-in">
+            <span class="iconochive-person"></span>
+          </a>
+          <span id="wm-save-snapshot-in-progress" class="iconochive-web"></span>
+        </span>
+                    <a class="xxs" href="http://faq.web.archive.org/" title="Get some help using the Wayback Machine" style="top:-6px;"><span class="iconochive-question" style="color:rgb(87,186,244);font-size:160%;"></span></a>
+                    <a id="wm-tb-close" href="#close" style="top:-2px;" title="Close the toolbar"><span class="iconochive-remove-circle" style="color:#888888;font-size:240%;"></span></a>
+                </div>
+                <div id="wm-share" class="xxs">
+                    <a href="/web/20171227012243/http://web.archive.org/screenshot/http://labs.hyperandroid.com/efficient-webgl-stroking"
+                       id="wm-screenshot"
+                       title="screenshot">
+                        <span class="wm-icon-screen-shot"></span>
+                    </a>
+                    <a href="#" id="wm-video" title="video">
+                        <span class="iconochive-movies"></span>
+                    </a>
+                    <a id="wm-share-facebook" href="#" data-url="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/efficient-webgl-stroking" title="Share on Facebook" style="margin-right:5px;" target="_blank"><span class="iconochive-facebook" style="color:#3b5998;font-size:160%;"></span></a>
+                    <a id="wm-share-twitter" href="#" data-url="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/efficient-webgl-stroking" title="Share on Twitter" style="margin-right:5px;" target="_blank"><span class="iconochive-twitter" style="color:#1dcaff;font-size:160%;"></span></a>
+                </div>
+                <div style="padding-right:2px;text-align:right;white-space:nowrap;">
+                    <a id="wm-expand" class="wm-btn wm-closed" href="#expand"><span id="wm-expand-icon" class="iconochive-down-solid"></span> <span class="xxs" style="font-size:80%;">About this capture</span></a>
+                </div>
+            </div>
+        </div>
+        <div id="wm-capinfo" style="border-top:1px solid #777;display:none; overflow: hidden">
+            <div id="wm-capinfo-notice" source="api"></div>
+            <div id="wm-capinfo-collected-by">
+                <div style="background-color:#666;color:#fff;font-weight:bold;text-align:center">COLLECTED BY</div>
+                <div style="padding:3px;position:relative" id="wm-collected-by-content">
+                    <div style="display:inline-block;vertical-align:top;width:50%;">
+                        <span class="c-logo" style="background-image:url(https://archive.org/services/img/webwidecrawl);"></span>
+                        Organization: <a style="color:#33f;" href="https://archive.org/details/webwidecrawl" target="_new"><span class="wm-title">Internet Archive</span></a>
+                        <div style="max-height:75px;overflow:hidden;position:relative;">
+                            <div style="position:absolute;top:0;left:0;width:100%;height:75px;background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 90%,rgba(255,255,255,255) 100%);"></div>
+                            The Internet Archive discovers and captures web pages through many different web crawls.
+
+                            At any given time several distinct crawls are running, some for months, and some every day or longer.
+
+                            View the web archive through the <a href="http://archive.org/web/web.php">Wayback Machine</a>.
+                        </div>
+                    </div>
+                    <div style="display:inline-block;vertical-align:top;width:49%;">
+                        <span class="c-logo" style="background-image:url(https://archive.org/services/img/wide00016)"></span>
+                        <div>Collection: <a style="color:#33f;" href="https://archive.org/details/wide00016" target="_new"><span class="wm-title">Wide Crawl Number 16: Started June 3rd, 2017 - Still running</span></a></div>
+                        <div style="max-height:75px;overflow:hidden;position:relative;">
+                            <div style="position:absolute;top:0;left:0;width:100%;height:75px;background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 90%,rgba(255,255,255,255) 100%);"></div>
+                            Web wide crawl number 16<div><br></div><div>The seed list for Wide00016 was made from the join of the top 1 million domains from CISCO and the top 1 million domains from Alexa.</div><div><br><div><br></div><div><br></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="wm-capinfo-timestamps">
+                <div style="background-color:#666;color:#fff;font-weight:bold;text-align:center" title="Timestamps for the elements of this page">TIMESTAMPS</div>
+                <div>
+                    <div id="wm-capresources" style="margin:0 5px 5px 5px;max-height:250px;overflow-y:scroll !important"></div>
+                    <div id="wm-capresources-loading" style="text-align:left;margin:0 20px 5px 5px;display:none"><img src="https://web-static.archive.org/_static/images/loading.gif" alt="loading" /></div>
+                </div>
+            </div>
+        </div></div></div></div><div id="wm-ipp-print">The Wayback Machine - https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/efficient-webgl-stroking</div>
+<script type="text/javascript">//<![CDATA[
+__wm.bt(750,27,25,2,"web","http://labs.hyperandroid.com/efficient-webgl-stroking","20171227012243",1996,"https://web-static.archive.org/_static/",["https://web-static.archive.org/_static/css/banner-styles.css?v=p7PEIJWi","https://web-static.archive.org/_static/css/iconochive.css?v=3PDvdIFv"], false);
+__wm.rw(1);
+//]]></script>
+<!-- END WAYBACK TOOLBAR INSERT -->
+
+<div id="page" class="hfeed site">
+    <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+
+    <div id="sidebar" class="sidebar">
+        <header id="masthead" class="site-header" role="banner">
+            <div class="site-branding">
+                <p class="site-title"><a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/" rel="home">Ibon Tolosana</a></p>
+                <button class="secondary-toggle">Menu and widgets</button>
+            </div><!-- .site-branding -->
+        </header><!-- .site-header -->
+
+        <div id="secondary" class="secondary">
+
+
+
+            <div id="widget-area" class="widget-area" role="complementary">
+                <aside id="wpsnw-3" class="widget wpsnw-class">
+                    <ul class="social-networks unstyled inline" style="text-align:center;">
+
+
+                        <li class="github wpsnw-2x  display-icons">
+
+                            <a rel="external" title="github" target="_blank" href="https://web.archive.org/web/20171227012243/https://github.com/hyperandroid">
+
+
+                                <i class="icon-github"></i>
+
+
+                            </a>
+
+                        </li>
+
+
+                        <li class="twitter wpsnw-2x  display-icons">
+
+                            <a rel="external" title="twitter" target="_blank" href="https://web.archive.org/web/20171227012243/https://twitter.com/hyperandroid">
+
+
+                                <i class="icon-twitter"></i>
+
+
+                            </a>
+
+                        </li>
+
+
+                        <li class="linkedin wpsnw-2x  display-icons">
+
+                            <a rel="external" title="linkedin" target="_blank" href="https://web.archive.org/web/20171227012243/https://www.linkedin.com/in/ibontolosana">
+
+
+                                <i class="icon-linkedin"></i>
+
+
+                            </a>
+
+                        </li>
+
+
+                    </ul>
+                </aside>		<aside id="recent-posts-4" class="widget widget_recent_entries">		<h2 class="widget-title">Latest posts</h2>		<ul>
+                <li>
+                    <a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/random-thoughts-dumped-in-medium">Random thoughts dumped in medium</a>
+                </li>
+                <li>
+                    <a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/webdev-4-de-marzo">WebDev 4 de marzo</a>
+                </li>
+                <li>
+                    <a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/android-jni-c-pointers-to-java">Android JNI c++ pointers to Java.</a>
+                </li>
+                <li>
+                    <a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/android-ndk-with-multiple-pre-built-libraries">Android NDK with multiple pre-built libraries</a>
+                </li>
+                <li>
+                    <a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/efficient-webgl-stroking">Efficient WebGL stroking</a>
+                </li>
+                <li>
+                    <a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/finite-state-machine">Finite State Machine</a>
+                </li>
+                <li>
+                    <a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/trello-test">Trello test</a>
+                </li>
+            </ul>
+            </aside><aside id="pages-5" class="widget widget_pages"><h2 class="widget-title">Pages</h2>		<ul>
+                <li class="page_item page-item-2"><a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/html5-tiler-3d">Tiler3D-HTML5</a></li>
+                <li class="page_item page-item-22"><a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/welcome">Index</a></li>
+                <li class="page_item page-item-63"><a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/hypnoamoeba-html5">HypnoAmoeba-HTML5</a></li>
+                <li class="page_item page-item-92"><a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/particles-html5">Particles-HTML5</a></li>
+                <li class="page_item page-item-157"><a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/js1k">js1K Entry &#8211; Grass</a></li>
+                <li class="page_item page-item-188"><a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/environmentmap-html5">Environment Map</a></li>
+                <li class="page_item page-item-220"><a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/animation">CAAT. Canvas Advanced Animation Toolkit</a></li>
+                <li class="page_item page-item-435"><a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/css3-transformations">CSS3 transformations.</a></li>
+                <li class="page_item page-item-492"><a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/mathmayhem">MathMayhem</a></li>
+                <li class="page_item page-item-729"><a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/book">CSS3 Book</a></li>
+                <li class="page_item page-item-798"><a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/sumon-webgl">Sumon WebGL</a></li>
+                <li class="page_item page-item-890"><a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/css3-menu">CSS3 Menu</a></li>
+                <li class="page_item page-item-955"><a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/css3-mosaic">CSS3 Mosaic</a></li>
+                <li class="page_item page-item-989"><a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/css3-tiler">CSS3 Tiler</a></li>
+                <li class="page_item page-item-1179"><a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/welcome-2">Welcome</a></li>
+                <li class="page_item page-item-1219"><a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/resolution-independent-games">Resolution independent games.</a></li>
+            </ul>
+            </aside>			</div><!-- .widget-area -->
+
+        </div><!-- .secondary -->
+
+    </div><!-- .sidebar -->
+
+    <div id="content" class="site-content">
+
+        <div id="primary" class="content-area">
+            <main id="main" class="site-main" role="main">
+
+
+                <article id="post-1206" class="post-1206 post type-post status-publish format-standard hentry category-sin-categoria tag-opengl tag-opengl-lines tag-stroke tag-webgl tag-webgl-lines">
+
+                    <header class="entry-header">
+                        <h1 class="entry-title">Efficient WebGL stroking</h1>	</header><!-- .entry-header -->
+
+                    <div class="entry-content">
+                        <div class="addtoany_share_save_container addtoany_content_top"><div class="a2a_kit addtoany_list a2a_target" id="wpa2a_1"><a class="a2a_button_twitter" href="https://web.archive.org/web/20171227012243/http://www.addtoany.com/add_to/twitter?linkurl=http%3A%2F%2Flabs.hyperandroid.com%2Fefficient-webgl-stroking&amp;linkname=Efficient%20WebGL%20stroking" title="Twitter" rel="nofollow" target="_blank"><img src="https://web.archive.org/web/20171227012243im_/http://labs.hyperandroid.com/wp-content/plugins/add-to-any/icons/twitter.png" width="16" height="16" alt="Twitter"/></a><a class="a2a_button_google_plus" href="https://web.archive.org/web/20171227012243/http://www.addtoany.com/add_to/google_plus?linkurl=http%3A%2F%2Flabs.hyperandroid.com%2Fefficient-webgl-stroking&amp;linkname=Efficient%20WebGL%20stroking" title="Google+" rel="nofollow" target="_blank"><img src="https://web.archive.org/web/20171227012243im_/http://labs.hyperandroid.com/wp-content/plugins/add-to-any/icons/google_plus.png" width="16" height="16" alt="Google+"/></a><a class="a2a_button_facebook" href="https://web.archive.org/web/20171227012243/http://www.addtoany.com/add_to/facebook?linkurl=http%3A%2F%2Flabs.hyperandroid.com%2Fefficient-webgl-stroking&amp;linkname=Efficient%20WebGL%20stroking" title="Facebook" rel="nofollow" target="_blank"><img src="https://web.archive.org/web/20171227012243im_/http://labs.hyperandroid.com/wp-content/plugins/add-to-any/icons/facebook.png" width="16" height="16" alt="Facebook"/></a><a class="a2a_dd addtoany_share_save" href="https://web.archive.org/web/20171227012243/https://www.addtoany.com/share_save" style="background:url(https://web.archive.org/web/20171227012243im_/http://labs.hyperandroid.com/wp-content/plugins/add-to-any/favicon.png) no-repeat scroll 4px 0px;padding:0 0 0 25px;display:inline-block;height:16px;vertical-align:middle"><span>Share</span></a>
+                            <script type="text/javascript"><!--
+                            wpa2a.script_load();
+                            //--></script>
+                        </div></div><p>While working on WebGL rendering you soon realize that a canvas like API, despite its opinionated implementation, is extremely useful and easy to work with. Concretely, I am referring to its stroking capabilities. While making a stroke WebGL implementation I came up with the following solution, which requires very simple maths, is fast, and can be implemented just from 2d vectors.</p>
+                        <p>The Canvas API offers support for plenty of cool stuff like line width, line cap and line join value, etc. and so will we. Here&#8217;s an example of the implementation:</p>
+
+                        <div>
+                            <div><canvas id="c"></canvas></div>
+                            <div>
+                                <div>
+        <span style="margin-right:15px;">
+            <span>Line cap</span>
+            <select id="cap">
+                <option value="butt">butt</option>
+                <option value="square">square</option>
+                <option value="round">round</option>
+            </select>
+        </span>
+                                    <span style="margin-right:15px;">
+            <span>Line join</span>
+            <select id="join">
+                <option value="bevel">bevel</option>
+                <option value="miter">miter</option>
+                <option value="round" selected>round</option>
+            </select>
+        </span>
+                                    <span style="margin-right:15px;">
+            <span>Miter limit</span>
+            <select id="miter">
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10" selected>10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+            </select>
+        </span>
+                                </div>
+                                <div>
+        <span style="margin-right:15px;">
+            <span>Show lines</span>
+            <input type="checkbox" checked id="lines">
+        </span>
+                                    <span style="margin-right:15px;">
+            <span>Draw with canvas</span>
+            <input type="checkbox" checked id="canvas">
+        </span>
+                                </div>
+                            </div>
+                        </div>
+                        <script>
+                          (function() {
+                            /**
+                             *
+                             * License: see license.txt file.
+                             *
+                             */
+
+
+                            var EPSILON = 0.0001;
+
+                            /*
+                             StrokeGeometryAttributes {
+                             width? : number;        // 1 if not defined
+                             cap? : string;          // butt, round, square
+                             join?: string;          // bevel, round, miter
+                             mitterLimit? : number   // for join miter, the maximum angle value to use the miter
+                             }
+                             */
+
+                            var Point = function (x, y) {
+
+                              this.x = typeof x === "undefined" ? 0 : x;
+                              this.y = typeof y === "undefined" ? 0 : y;
+                            };
+
+                            Point.prototype = {
+
+                              scalarMult: function (f) {
+                                this.x *= f;
+                                this.y *= f;
+
+                                return this;
+                              },
+
+                              perpendicular: function () {
+                                var x = this.x;
+                                this.x = -this.y;
+                                this.y = x;
+
+                                return this;
+                              },
+
+                              invert: function () {
+                                this.x = -this.x;
+                                this.y = -this.y;
+
+                                return this;
+                              },
+
+                              length: function () {
+                                return Math.sqrt(this.x * this.x + this.y * this.y);
+                              },
+
+                              normalize: function () {
+                                var mod = this.length();
+                                this.x /= mod;
+                                this.y /= mod;
+                                return this;
+                              },
+
+                              angle : function() {
+                                return this.y/this.x;
+                              }
+                            };
+
+                            Point.Angle = function( p0, p1 ) {
+                              return Math.atan2( p1.x-p0.x, p1.y-p0.y ) ;
+                            };
+
+                            Point.Add = function (p0, p1) {
+                              return new Point(p0.x + p1.x, p0.y + p1.y);
+                            };
+
+                            Point.Sub = function (p1, p0) {
+                              return new Point(p1.x - p0.x, p1.y - p0.y);
+                            };
+
+                            Point.Middle = function (p0, p1) {
+                              return Point.Add(p0, p1).scalarMult(.5);
+                            };
+
+                            function getStrokeGeometry(points, attrs) {
+
+                              // trivial reject
+                              if (points.length < 2) {
+                                return;
+                              }
+
+                              var cap = attrs.cap || "butt";
+                              var join = attrs.join || "bevel";
+                              var lineWidth = (attrs.width || 1) / 2;
+                              var miterLimit = attrs.miterLimit || 10;
+                              var vertices = [];
+                              var middlePoints = [];  // middle points per each line segment.
+                              var closed= false;
+
+                              if (points.length === 2) {
+                                join = "bevel";
+                                createTriangles(points[0], Point.Middle(points[0], points[1]), points[1], vertices, lineWidth, join, miterLimit);
+                              } else {
+
+                                /** Disable for simulation purposes, but uncomment for have the system working otherwise.
+                                 if (points[0] === points[points.length - 1] ||
+                                 (points[0].x === points[points.length - 1].x && points[0].y === points[points.length - 1].y )) {
+
+                                 var p0 = points.shift();
+                                 p0 = Point.Middle(p0, points[0]);
+                                 points.unshift(p0);
+                                 points.push(p0);
+                                 closed= true;
+                                 }
+                                 */
+                                var i;
+                                for (i = 0; i < points.length - 1; i++) {
+                                  if (i === 0) {
+                                    middlePoints.push(points[0]);
+                                  } else if (i === points.length - 2) {
+                                    middlePoints.push(points[points.length - 1])
+                                  } else {
+                                    middlePoints.push(Point.Middle(points[i], points[i + 1]));
+                                  }
+                                }
+
+                                for (i = 1; i < middlePoints.length; i++) {
+                                  createTriangles(middlePoints[i - 1], points[i], middlePoints[i], vertices, lineWidth, join, miterLimit);
+                                }
+                              }
+
+                              if ( !closed ) {
+
+                                if (cap === "round") {
+
+                                  var p00 = vertices[0];
+                                  var p01 = vertices[1];
+                                  var p02 = points[1];
+                                  var p10 = vertices[vertices.length - 1];
+                                  var p11 = vertices[vertices.length - 3];
+                                  var p12 = points[points.length - 2];
+
+                                  createRoundCap(points[0], p00, p01, p02, vertices);
+                                  createRoundCap(points[points.length - 1], p10, p11, p12, vertices);
+
+                                } else if (cap === "square") {
+
+                                  var p00 = vertices[vertices.length - 1];
+                                  var p01 = vertices[vertices.length - 3];
+
+                                  createSquareCap(
+                                    vertices[0],
+                                    vertices[1],
+                                    Point.Sub(points[0], points[1]).normalize().scalarMult(Point.Sub(points[0], vertices[0]).length()),
+                                    vertices);
+                                  createSquareCap(
+                                    p00,
+                                    p01,
+                                    Point.Sub(points[points.length - 1], points[points.length - 2]).normalize().scalarMult(Point.Sub(p01, points[points.length - 1]).length()),
+                                    vertices);
+                                }
+                              }
+
+                              return vertices;
+                            }
+
+                            function createSquareCap(p0, p1, dir, verts) {
+
+                              verts.push(p0);
+                              verts.push(Point.Add(p0, dir));
+                              verts.push(Point.Add(p1, dir));
+
+                              verts.push(p1);
+                              verts.push(Point.Add(p1, dir));
+                              verts.push(p0);
+                            }
+
+                            function createRoundCap(center, _p0, _p1, nextPointInLine, verts) {
+
+                              var radius = Point.Sub(center, _p0).length();
+
+                              var angle0 = Math.atan2((_p1.y - center.y), (_p1.x - center.x));
+                              var angle1 = Math.atan2((_p0.y - center.y), (_p0.x - center.x));
+
+                              var orgAngle0= angle0;
+
+                              if ( angle1 > angle0) {
+                                if ( angle1-angle0>=Math.PI-EPSILON) {
+                                  angle1=angle1-2*Math.PI;
+                                }
+                              }
+                              else {
+                                if ( angle0-angle1>=Math.PI-EPSILON) {
+                                  angle0=angle0-2*Math.PI;
+                                }
+                              }
+
+                              var angleDiff = angle1-angle0;
+
+                              if (Math.abs(angleDiff) >= Math.PI - EPSILON && Math.abs(angleDiff) <= Math.PI + EPSILON) {
+                                var r1 = Point.Sub(center, nextPointInLine);
+                                if ( r1.x===0 ) {
+                                  if (r1.y>0) {
+                                    angleDiff= -angleDiff;
+                                  }
+                                } else if ( r1.x>=-EPSILON ) {
+                                  angleDiff= -angleDiff;
+                                }
+                              }
+
+                              var nsegments = (Math.abs(angleDiff * radius) / 7) >> 0;
+                              nsegments++;
+
+                              var angleInc = angleDiff / nsegments;
+
+                              for (var i = 0; i < nsegments; i++) {
+                                verts.push(new Point(center.x, center.y));
+                                verts.push(new Point(
+                                  center.x + radius * Math.cos(orgAngle0 + angleInc * i),
+                                  center.y + radius * Math.sin(orgAngle0 + angleInc * i)
+                                ));
+                                verts.push(new Point(
+                                  center.x + radius * Math.cos(orgAngle0 + angleInc * (1 + i)),
+                                  center.y + radius * Math.sin(orgAngle0 + angleInc * (1 + i))
+                                ));
+                              }
+                            }
+
+                            function signedArea(p0, p1, p2) {
+                              return (p1.x - p0.x) * (p2.y - p0.y) - (p2.x - p0.x) * (p1.y - p0.y);
+                            }
+
+                            function lineIntersection(p0, p1, p2, p3) {
+
+                              var a0 = p1.y - p0.y;
+                              var b0 = p0.x - p1.x;
+
+                              var a1 = p3.y - p2.y;
+                              var b1 = p2.x - p3.x;
+
+                              var det = a0 * b1 - a1 * b0;
+                              if (det > -EPSILON && det < EPSILON) {
+                                return null;
+                              } else {
+                                var c0 = a0 * p0.x + b0 * p0.y;
+                                var c1 = a1 * p2.x + b1 * p2.y;
+
+                                var x = (b1 * c0 - b0 * c1) / det;
+                                var y = (a0 * c1 - a1 * c0) / det;
+                                return new Point(x, y);
+                              }
+                            }
+
+                            function createTriangles(p0, p1, p2, verts, width, join, miterLimit) {
+                              var t0 = Point.Sub(p1, p0);
+                              var t2 = Point.Sub(p2, p1);
+
+                              t0.perpendicular();
+                              t2.perpendicular();
+
+                              // triangle composed by the 3 points if clockwise or couterclockwise.
+                              // if counterclockwise, we must invert the line threshold points, otherwise the intersection point
+                              // could be erroneous and lead to odd results.
+                              if (signedArea(p0, p1, p2) > 0) {
+                                t0.invert();
+                                t2.invert();
+                              }
+
+                              t0.normalize();
+                              t2.normalize();
+                              t0.scalarMult(width);
+                              t2.scalarMult(width);
+
+                              var pintersect = lineIntersection(Point.Add(t0, p0), Point.Add(t0, p1), Point.Add(t2, p2), Point.Add(t2, p1));
+
+                              var anchor = null;
+                              var anchorLength= Number.MAX_VALUE;
+                              if ( pintersect ) {
+                                anchor= Point.Sub(pintersect, p1);
+                                anchorLength= anchor.length();
+                              }
+                              var dd = (anchorLength / width)|0;
+                              var p0p1= Point.Sub( p0,p1 );
+                              var p0p1Length= p0p1.length();
+                              var p1p2= Point.Sub( p1,p2 );
+                              var p1p2Length= p1p2.length();
+
+                              /**
+                               * the cross point exceeds any of the segments dimension.
+                               * do not use cross point as reference.
+                               */
+                              if ( anchorLength>p0p1Length || anchorLength>p1p2Length ) {
+
+                                verts.push(Point.Add(p0, t0));
+                                verts.push(Point.Sub(p0, t0));
+                                verts.push(Point.Add(p1, t0));
+
+                                verts.push(Point.Sub(p0, t0));
+                                verts.push(Point.Add(p1, t0));
+                                verts.push(Point.Sub(p1, t0));
+
+                                if ( join === "round" ) {
+                                  createRoundCap(p1, Point.Add(p1,t0), Point.Add(p1,t2), p2, verts);
+                                } else if ( join==="bevel" || (join==="miter" && dd>=miterLimit) ) {
+                                  verts.push( p1 );
+                                  verts.push( Point.Add(p1,t0) );
+                                  verts.push( Point.Add(p1,t2) );
+                                } else if (join === 'miter' && dd<miterLimit && pintersect) {
+
+                                  verts.push( Point.Add(p1,t0) );
+                                  verts.push( p1 );
+                                  verts.push( pintersect );
+
+                                  verts.push( Point.Add(p1,t2) );
+                                  verts.push( p1 );
+                                  verts.push( pintersect );
+                                }
+
+                                verts.push(Point.Add(p2, t2));
+                                verts.push(Point.Sub(p1, t2));
+                                verts.push(Point.Add(p1, t2));
+
+                                verts.push(Point.Add(p2, t2));
+                                verts.push(Point.Sub(p1, t2));
+                                verts.push(Point.Sub(p2, t2));
+
+
+                              } else {
+
+                                verts.push(Point.Add(p0, t0));
+                                verts.push(Point.Sub(p0, t0));
+                                verts.push(Point.Sub(p1, anchor));
+
+                                verts.push(Point.Add(p0, t0));
+                                verts.push(Point.Sub(p1, anchor));
+                                verts.push(Point.Add(p1, t0));
+
+                                if (join === "round") {
+
+                                  var _p0 = Point.Add(p1, t0);
+                                  var _p1 = Point.Add(p1, t2);
+                                  var _p2 = Point.Sub(p1, anchor);
+
+                                  var center = p1;
+
+                                  verts.push(_p0);
+                                  verts.push(center);
+                                  verts.push(_p2);
+
+                                  createRoundCap(center, _p0, _p1, _p2, verts);
+
+                                  verts.push(center);
+                                  verts.push(_p1);
+                                  verts.push(_p2);
+
+                                } else {
+
+                                  if (join === "bevel" || (join === "miter" && dd >= miterLimit)) {
+                                    verts.push(Point.Add(p1, t0));
+                                    verts.push(Point.Add(p1, t2));
+                                    verts.push(Point.Sub(p1, anchor));
+                                  }
+
+                                  if (join === 'miter' && dd < miterLimit) {
+                                    verts.push(pintersect);
+                                    verts.push(Point.Add(p1, t0));
+                                    verts.push(Point.Add(p1, t2));
+                                  }
+                                }
+
+                                verts.push(Point.Add(p2, t2));
+                                verts.push(Point.Sub(p1, anchor));
+                                verts.push(Point.Add(p1, t2));
+
+                                verts.push(Point.Add(p2, t2));
+                                verts.push(Point.Sub(p1, anchor));
+                                verts.push(Point.Sub(p2, t2));
+                              }
+                            }
+
+
+                            //////////////////////////////////////////////////////////////////////////////////////////
+                            //////////////////////////////////////////////////////////////////////////////////////////
+                            /////////////////                                                    /////////////////////
+                            /////////////////        DRAWING CODE - DON'T WORRY ABOUT THIS       /////////////////////
+                            /////////////////                                                    /////////////////////
+                            //////////////////////////////////////////////////////////////////////////////////////////
+                            //////////////////////////////////////////////////////////////////////////////////////////
+
+                            function drawStroke(lineWidth, points, color) {
+
+                              var tris = getStrokeGeometry(points, {
+                                width: lineWidth,
+                                cap : lineCap,
+                                join : lineJoin,
+                                miterLimit : miterLimit
+                              });
+
+                              // every 3 points, is a tri
+                              ctx.strokeStyle=color;
+                              for (var i = 0; i < tris.length; i += 3) {
+                                ctx.beginPath();
+                                ctx.moveTo(tris[i].x, tris[i].y);
+                                ctx.lineTo(tris[i + 1].x, tris[i + 1].y);
+                                ctx.lineTo(tris[i + 2].x, tris[i + 2].y);
+                                ctx.closePath();
+
+                                ctx.stroke();
+                              }
+
+                              // draw points.
+                              for (var i = 0; i < points.length; i++) {
+                                ctx.fillStyle = "red";
+                                ctx.beginPath();
+                                ctx.arc(points[i].x, points[i].y, 10, 0, 2 * Math.PI, false);
+                                ctx.fill();
+                              }
+
+
+
+                            }
+
+                            var lineCap= "butt";
+                            var lineJoin= "round";
+                            var lines= true;
+                            var miterLimit= 10;
+                            var drawWithCanvas= true;
+                            var lineWidth= 80;
+                            var points = [
+                              new Point(500, 100),
+                              new Point(100, 300),
+                              new Point(400, 500)
+                            ];
+
+                            var canvas = document.getElementById("c");
+                            canvas.width = 600;
+                            canvas.height = 600;
+                            var ctx = canvas.getContext("2d");
+
+                            function drawLine( p0, p1, color, width ) {
+                              if ( !lines ) {
+                                return;
+                              }
+
+                              ctx.save();
+                              ctx.translate( p0.x, p0.y );
+                              ctx.rotate( -Point.Angle(p0,p1) );
+
+                              var len= Point.Sub( p0, p1).length();
+
+                              ctx.lineWidth= width;
+                              ctx.strokeStyle= color;
+                              ctx.beginPath();
+                              ctx.moveTo( 0,0 );
+                              ctx.lineTo( 0, len );
+                              ctx.stroke();
+
+                              ctx.beginPath();
+                              ctx.moveTo( 0, len );
+                              ctx.lineTo( -5, len-10 );
+                              ctx.stroke();
+
+                              ctx.beginPath();
+                              ctx.moveTo( 0, len );
+                              ctx.lineTo( 5, len-10 );
+                              ctx.stroke();
+
+                              ctx.restore();
+                            }
+
+                            function drawCrossingLine( _p0, _p1, t1, color, width ) {
+
+                              if ( !lines ) {
+                                return;
+                              }
+
+                              var p0= Point.Add( _p0, t1 );
+                              var p1= Point.Add( _p1, t1 );
+                              var pdif= Point.Sub( p1,p0).normalize();
+                              ctx.save();
+                              ctx.beginPath();
+                              ctx.lineWidth= width;
+                              ctx.strokeStyle=color;
+                              ctx.moveTo( p0.x- 1000*pdif.x, p0.y-1000*pdif.y );
+                              ctx.lineTo( p0.x + 1000*pdif.x, p0.y + 1000*pdif.y );
+                              ctx.stroke();
+                              ctx.restore();
+                            }
+
+                            function drawInfo() {
+                              drawLine( points[0], points[1], "#00f", 4 );
+                              drawLine( points[1], points[2], "#00f", 4 );
+
+                              var t1= Point.Sub( points[1], points[0]).perpendicular().normalize().scalarMult( lineWidth/2 );
+                              var t2= Point.Sub( points[2], points[1]).perpendicular().normalize().scalarMult( lineWidth/2 );
+                              if ( signedArea( points[0], points[1], points[2]) > 0 ) {
+                                t1.scalarMult(-1);
+                                t2.scalarMult(-1);
+                              }
+
+                              if ( sizePoints===null ) {
+                                sizePoints= [
+                                  { point: new Point(), reference:points[0] },
+                                  { point: new Point(), reference:points[0] },
+                                  { point: new Point(), reference:points[1] },
+                                  { point: new Point(), reference:points[1] },
+                                  { point: new Point(), reference:points[2] },
+                                  { point: new Point(), reference:points[2] }
+                                ];
+                              }
+
+                              var p;
+                              drawLine( points[0], p=Point.Add( points[0], t1 ), "#0f0", 2 );
+                              sizePoints[0].point.x= p.x;
+                              sizePoints[0].point.y= p.y;
+                              drawLine( points[0], p=Point.Sub( points[0], t1 ), "#070", 2 );
+                              sizePoints[1].point.x= p.x;
+                              sizePoints[1].point.y= p.y;
+                              drawLine( points[1], p=Point.Add( points[1], t1 ), "#0f0", 2 );
+                              sizePoints[2].point.x= p.x;
+                              sizePoints[2].point.y= p.y;
+
+                              drawLine( points[1], p=Point.Add( points[1], t2 ), "#0f0", 2 );
+                              sizePoints[3].point.x= p.x;
+                              sizePoints[3].point.y= p.y;
+                              drawLine( points[2], p=Point.Add( points[2], t2 ), "#0f0", 2 );
+                              sizePoints[4].point.x= p.x;
+                              sizePoints[4].point.y= p.y;
+                              drawLine( points[2], p=Point.Sub( points[2], t2 ), "#070", 2 );
+                              sizePoints[5].point.x= p.x;
+                              sizePoints[5].point.y= p.y;
+
+
+                              // from p0+t1 to p1+t1, draw a line.
+
+                              drawCrossingLine( points[0], points[1], t1, "#f00", 3 );
+                              drawCrossingLine( points[1], points[2], t2, "#f00", 3 );
+
+                              var pintersect = lineIntersection(
+                                Point.Add(t1, points[0]), Point.Add(t1, points[1]),
+                                Point.Add(t2, points[2]), Point.Add(t2, points[1]));
+
+                              if ( pintersect && lines ) {
+
+                                var anchor = null;
+                                var anchorLength = Number.MAX_VALUE;
+                                anchor = Point.Sub(pintersect, points[1]);
+                                anchorLength = anchor.length();
+
+                                var p0p1 = Point.Sub(points[0], points[1]);
+                                var p0p1Length = p0p1.length();
+                                var p1p2 = Point.Sub(points[1], points[2]);
+                                var p1p2Length = p1p2.length();
+
+                                /**
+                                 * the cross point exceeds any of the segments dimension.
+                                 * do not use cross point as reference.
+                                 */
+                                if (anchorLength <= p0p1Length && anchorLength <= p1p2Length) {
+                                  ctx.save();
+                                  ctx.fillStyle="#00f";
+                                  ctx.beginPath();
+                                  ctx.arc( pintersect.x, pintersect.y, 10, 0, 2*Math.PI, false );
+                                  ctx.fill();
+                                  ctx.restore();
+
+                                  var pintersect2= Point.Add( points[1], Point.Sub( points[1], pintersect) );
+                                  ctx.save();
+                                  ctx.fillStyle="#00f";
+                                  ctx.beginPath();
+                                  ctx.arc( pintersect2.x, pintersect2.y, 10, 0, 2*Math.PI, false );
+                                  ctx.fill();
+                                  ctx.restore();
+
+                                  drawLine(points[1], pintersect2, "#f0f", 3);
+                                }
+                              }
+
+                            }
+
+                            function redraw() {
+                              ctx.fillStyle="#eee";
+                              ctx.fillRect( 0, 0, canvas.width, canvas.height );
+
+                              if ( drawWithCanvas ) {
+                                ctx.save();
+                                ctx.beginPath();
+                                ctx.lineWidth= lineWidth;
+                                ctx.miterLimit= miterLimit;
+                                ctx.lineCap= lineCap;
+                                ctx.lineJoin= lineJoin;
+                                ctx.moveTo( points[0].x, points[0].y );
+                                for( var i=1; i<points.length; i++ ) {
+                                  ctx.lineTo( points[i].x, points[i].y );
+                                }
+                                ctx.strokeStyle="#ccc";
+                                ctx.stroke();
+                                ctx.restore();
+                              }
+
+
+                              drawStroke(lineWidth, points, "#999");
+                              drawInfo();
+                            }
+
+
+                            var sizePoints= null;
+
+                            redraw();
+
+                            ////////////////////////////////////////////////////////////////////////////////////////////////////
+                            ////////////////////////////////////////////////////////////////////////////////////////////////////
+                            ////////////////////////////////////////////////////////////////////////////////////////////////////
+                            ////////////////////////////////////////////////////////////////////////////////////////////////////
+                            ////////////////////////////////////////////////////////////////////////////////////////////////////
+                            ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                            var capturedPoint= null;
+                            var capturedType= "none";
+                            var capturedReference= null;
+                            var prevX= 0;
+                            var prevY= 0;
+
+
+                            function hasTouch() {
+                              return (('ontouchstart' in window) ||
+                                (navigator.maxTouchPoints > 0) ||
+                                (navigator.msMaxTouchPoints > 0));
+                            }
+
+                            if ( hasTouch() ) {
+                              canvas.addEventListener( "touchstart", function(e) {
+                                e.preventDefault();
+                                if (e.stopPropagation) {e.stopPropagation()}
+                                e= e.targetTouches[0];
+                                down( e );
+                              }, false);
+
+                              canvas.addEventListener( "touchmove", function(e) {
+                                e.preventDefault();
+                                if (e.stopPropagation) {e.stopPropagation()}
+                                move( e.changedTouches[0] );
+                              }, false);
+
+                              canvas.addEventListener( "touchend", function(e) {
+                                e.preventDefault();
+                                if (e.stopPropagation) {e.stopPropagation()}
+                                capturedPoint= null;
+                              }, false);
+
+                              canvas.addEventListener( "touchcancel", function(e) {
+                                e.preventDefault();
+                                if (e.stopPropagation) {e.stopPropagation()}
+                                capturedPoint= null;
+                              }, false);
+
+                            } else {
+
+                              canvas.addEventListener( "mouseup", function(e) {
+                                e.preventDefault();
+                                if (e.stopPropagation) {e.stopPropagation()}
+                                capturedPoint= null;
+                              }, false );
+
+                              canvas.addEventListener( "mousedown", function(e) {
+                                e.preventDefault();
+                                if (e.stopPropagation) {e.stopPropagation()}
+                                down( e );
+                              }, false );
+
+                              canvas.addEventListener( "mousemove", function(e) {
+                                e.preventDefault();
+                                if (e.stopPropagation) {e.stopPropagation()}
+                                move( e );
+                              }, false );
+                            }
+
+                            function down( e ) {
+
+                              var r=e.target.getClientRects()[0];
+                              var x= e.offsetX || (e.clientX - (r.x||r.left));
+                              var y= e.offsetY || (e.clientY - (r.y||r.top));
+
+                              if ( lines && sizePoints ) {
+                                for (var i = 0; i < sizePoints.length; i++) {
+                                  if (Point.Sub(sizePoints[i].point, new Point(x, y)).length() < 15) {
+                                    capturedPoint = new Point(sizePoints[i].point.x, sizePoints[i].point.y);
+                                    prevX = x;
+                                    prevY = y;
+                                    capturedReference = sizePoints[i].reference;
+                                    capturedType = "size";
+                                    return;
+                                  }
+                                }
+                              }
+
+                              for( var i=0; i<points.length; i++ ) {
+                                if ( Point.Sub( points[i], new Point(x,y)).length()<15 ) {
+                                  capturedPoint= points[i];
+                                  capturedType="move";
+                                  prevX= x;
+                                  prevY= y;
+                                  return;
+                                }
+                              }
+
+                              capturedPoint= null;
+
+                            }
+
+                            function move( e ) {
+
+                              if ( !capturedPoint ) {
+                                return;
+                              }
+
+                              var r=e.target.getClientRects()[0];
+                              var x= e.offsetX || (e.clientX - (r.x||r.left));
+                              var y= e.offsetY || (e.clientY - (r.y||r.top));
+
+                              capturedPoint.x += x - prevX;
+                              capturedPoint.y += y - prevY;
+
+                              if ( lines && capturedType==="size") {
+                                var nv= Point.Sub( new Point( capturedPoint.x, capturedPoint.y ), capturedReference );
+                                var s= Math.cos( Point.Angle( nv, Point.Sub(capturedPoint, capturedReference) ) ) * nv.length();
+                                lineWidth= Math.abs(2*s);
+                              }
+
+                              prevX = x;
+                              prevY = y;
+
+                              redraw();
+
+                            }
+
+                            document.getElementById("cap").onchange= function(e) {
+                              lineCap= e.target[e.target.selectedIndex].value;
+                              redraw();
+                            };
+                            document.getElementById("join").onchange= function(e) {
+                              lineJoin= e.target[e.target.selectedIndex].value;
+                              redraw();
+                            };
+                            document.getElementById("miter").onchange= function(e) {
+                              miterLimit= parseInt(e.target[e.target.selectedIndex].value);
+                              redraw();
+                            };
+                            document.getElementById("lines").onclick= function(e) {
+                              lines= e.target.checked;
+                              redraw();
+                            };
+                            document.getElementById("canvas").onclick= function(e) {
+                              drawWithCanvas= e.target.checked;
+                              redraw();
+                            };
+
+                          })();
+                        </script>
+
+                        <p>
+
+                        <ul>
+                            <li>Check &#8216;show lines&#8217; to see the internally calculated anchors and vectors to setup the tessellation.
+                            <li>The red points, and the green arrows can be dragged to see live results.
+                            <li>&#8216;Draw with canvas&#8217; is enabled so that the calculated triangles will be over-imposed for visual comparison between the algorithm and the canvas API.
+                            <li>Select different line caps and join values.
+                            <li>The pink line (substracted intersection point from center point) will disappear when the angle is too narrow to base the tessellation in the intersection point. Note that not always exists an intersection point.
+                        </ul>
+                        <p>For the implementation to work, a vector of Points and some line attributes are necessary. These points should define a poly-line which is a contour we want to have tessellated. In Cocos2d-html5 v4 we have a general purpose Path class, which classifies its segments in contours, and could be a good starting point if nothing else is around.</p>
+                        <h2>First steps, just stroke the poly-line</h2>
+                        <p>If we went to create quads for each line segment of our contour, we would end up with wrong results, where too much overdraw, and no fancy corners are gotten as a result. To avoid this, the supplied data must be a bit preprocessed if smooth line join and closed contours showing correctly a requirement. Specifically, we want to split our contour segments (but the first and last one) into two different segments by creating a new middle point.<br/>
+                            This is the result of an straighforward algorithm that will create a straight line every two points, thus, for each 3 points, we&#8217;ll get two straight line segments.</p>
+                        <p>Data setup will be as follows:</p>
+                        <pre class="brush: js; auto-links: false; toolbar: false;">
+  var i;
+
+  for ( i = 0; i &lt; points.length - 1; i++) {
+    if ( i===0 ) {
+      midp.push( points[0] );
+    } else if ( i===points.length-2 ) {
+      midp.push( points[points.length-1] )
+    } else {
+      midp.push( Point.Middle(points[i], points[i + 1]) );
+    }
+  }
+
+  // for every middle point, create all necessary triangles for the two segments is represents.
+  for ( i = 1; i &lt; mids.length; i++) {
+    createTriangles(
+      midp[i - 1],
+      points[i],
+      midp[i],
+      resulting_array_of_points,
+      lineWidth,
+      join,
+      cap,
+      miterLimit );
+  }
+</pre>
+                        <p>Second, we must calculate the correct line width based on the current transformation matrix. To do so, we create two vectors: Vector( 0, 0 ) and Vector( lineWidth, 0 ) both of which will be transformed by the current transformation matrix. the module of the resulting vector between both transformed points will be our actual line width:</p>
+                        <pre class="brush: js; auto-links: false; toolbar: false;">
+  var v0= new Vector();
+  var v1= new Vector(lineWidth, 0);
+  currentMatrix.transformPoint( v0 );
+  currentMatrix.transformPoint( v1 );
+
+  lineWidth= Vector.sub( v0, v1 ).getModule();
+</pre>
+                        <p>The result from stroking 3 points at (100,100), (300,100), and (300,300) with a line width of 80, and assuming an identity transformation matrix would be the following:<br/>
+                            <img src="https://web.archive.org/web/20171227012243im_/http://labs.hyperandroid.com/wp-content/uploads/2015/03/basic-tessellation-3.png"></p>
+                        <p>And for 4 points at (100,100), (300,100), (300,300), and (100,300) we&#8217;d get the following:<br/>
+                            <img src="https://web.archive.org/web/20171227012243im_/http://labs.hyperandroid.com/wp-content/uploads/2015/03/basic-tessellation-4.png"></p>
+                        <p>In this example the resuting triangles include a filler triangle for the union of both segments, corresponding to a &#8220;bevel&#8221; type line join.<br/>
+                            Importatnt to note that in the examples, with 3 points there&#8217;s no mid point created, but there&#8217;s one with 4 points, leading to two 3-point (or two line segment) tessellation blocks. More points will create more mid points.</p>
+                        <h3>But how&#8217;s all this calculated ?</h3>
+                        <p>From each line segment, a vector is calculated (blue), and normal vectors with the size of half the line width are created too (green). From the segment points (red circles), these normal vectors are added, creating 6 new points, which will be the pointers of the green arrows.<br/>
+                            Between each 2 of the external newly created points, a line will be traced (red). The intersection point of the two red lines and the subtraction of the middle point and the middle point are very important (blue dots). If the lines do not cross, the segments are parallel, and the tessellation is straightforward, just create the two triangles that compose it.</p>
+                        <p>With the segment points, the &#8216;bottom&#8217; blue point, and the calculated normal points for the line segments, we can already simply tessellate the segment. The result will be the one we have in the previous images.</p>
+                        <p>For example, the first tessellated triangle would be: (p0+t0), (p0-t0), (p1+anchor), being:</p>
+                        <ul>
+                            <li>p0, p1: the first two line segment points. (red dots)
+                            <li>t0: the external perpendicular vector to each p0 and p1 (light red arrow)
+                            <li>anchor: the vector resulting from subtracting the intersection point from the last (p1) line segment point.
+                        </ul>
+                        <p>And another one would be: (p0+t0), (p1+t0), (p1+anchor)</p>
+                        <p>It is just a matter of continuing dividing the space for the rest of the points.</p>
+                        <h3>My two lines do not intersect</h3>
+                        <p>Sometimes there&#8217;s no intersection point (red lines). In this case, or when the angle between the two segments is very narrow (the vector from center point to the intersection, which is magenta in the playground, is bigger than any of the segments) the algorithm switches to a different way of tessellation, since otherwise, that would be a failed case. Since there&#8217;s no intersection point, some elements like the miter must be calculated differently.</p>
+                        <h2>Line Joins</h2>
+                        <p>Line joins are the tessellation between every two line segments. The most basic one would be a <strong>bevel</strong> line join, which is trivial a single triangle whose tessellation information is already available:<br/>
+                            <a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/wp-content/uploads/2015/03/joinbevel.png"><img src="https://web.archive.org/web/20171227012243im_/http://labs.hyperandroid.com/wp-content/uploads/2015/03/joinbevel.png" alt="joinbevel" width="137" height="175" class="aligncenter size-full wp-image-1314"/></a></p>
+                        <p>A <strong>round</strong> needs to draw with center at p1 (middle point) and radius the difference between p1 and p1+t0 for example. The result would be:<br/>
+                            <a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/wp-content/uploads/2015/03/joinround.png"><img src="https://web.archive.org/web/20171227012243im_/http://labs.hyperandroid.com/wp-content/uploads/2015/03/joinround-300x193.png" alt="joinround" width="300" height="193" class="aligncenter size-medium wp-image-1316"/></a></p>
+                        <p>Another line join type is <strong>miter</strong>. The following image describes it:<br/>
+                            <a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/wp-content/uploads/2015/03/joinmiter.png"><img src="https://web.archive.org/web/20171227012243im_/http://labs.hyperandroid.com/wp-content/uploads/2015/03/joinmiter-300x214.png" alt="joinmiter" width="300" height="214" class="aligncenter size-medium wp-image-1315"/></a><br/>
+                            This type of line join is controlled by a parameter, a miter limit. The miter is a ratio between the length of the anchor vector (magenta) and half the line width. (Remember the line width is used to grow the tessellation segment in both line segment point directions). It is also important to note that the miter limit calculation must be clamped to an integer (something not told even in the Canvas Spec).</p>
+                        <p>For segments that have a narrow angle between them, the miter should be very lengthy to cover the join area, leading to odd visuals like in the example: <a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/wp-content/uploads/2015/03/Screen-Shot-2015-03-08-at-11.19.41-PM.png"><img src="https://web.archive.org/web/20171227012243im_/http://labs.hyperandroid.com/wp-content/uploads/2015/03/Screen-Shot-2015-03-08-at-11.19.41-PM-300x132.png" alt="miter too high" width="300" height="132" class="aligncenter size-medium wp-image-1317"/></a><br/>
+                            This can be controlled by the miter limit parameter, which will prevent the mitter join (switching to bevel) if the value is too high.</p>
+                        <h2>Line cap</h2>
+                        <p>Line caps control how the start and the end of a poly-line looks like. With a <strong>butt</strong> value, the line looks as it results tessellated, no extra triangles like in the image:<br/>
+                            <a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/wp-content/uploads/2015/03/capbutt-.png"><img src="https://web.archive.org/web/20171227012243im_/http://labs.hyperandroid.com/wp-content/uploads/2015/03/capbutt--300x124.png" alt="capbutt" width="300" height="124" class="aligncenter size-medium wp-image-1319"/></a></p>
+                        <p>Other types of cap are available: <strong>square</strong><br/>
+                            <a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/wp-content/uploads/2015/03/capsquare.png"><img src="https://web.archive.org/web/20171227012243im_/http://labs.hyperandroid.com/wp-content/uploads/2015/03/capsquare-300x123.png" alt="capsquare" width="300" height="123" class="aligncenter size-medium wp-image-1321"/></a></p>
+                        <p>And <strong>round</strong><br/>
+                            <a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/wp-content/uploads/2015/03/capround.png"><img src="https://web.archive.org/web/20171227012243im_/http://labs.hyperandroid.com/wp-content/uploads/2015/03/capround-300x119.png" alt="capround" width="300" height="119" class="aligncenter size-medium wp-image-1320"/></a></p>
+                        <h2>Triangle signed area</h2>
+                        <p>In all the cases, signs and directions of the perpendicular or line cap vectors must be taken into account. For example, it is mandatory to get the direction of the triangle created by each 3 points  before tessellation since otherwise odd visual results will arise. For example, if this is not addressed, the following result will be seen:<br/>
+                            <a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/wp-content/uploads/2015/03/Screen-Shot-2015-03-08-at-11.31.13-PM.png"><img src="https://web.archive.org/web/20171227012243im_/http://labs.hyperandroid.com/wp-content/uploads/2015/03/Screen-Shot-2015-03-08-at-11.31.13-PM-300x185.png" alt="Screen Shot 2015-03-08 at 11.31.13 PM" width="300" height="185" class="aligncenter size-medium wp-image-1323"/></a><br/>
+                            What we have here is that the intersection lines (red lines in the previous examples) are being calculated from the inner instead the outer. It is important to appropriately calculate the &#8216;signed area of the line segments triangle&#8217;, which not only gives the area of the triangle defined by 3 points, but also the sign, describing whether it is defined clockwise or counterclockwise.<br/>
+                            In our case, if the signed area is greater than 0, describing a counterclockwise triangle, we invert the vectors to define the intersection lines. We always see these vectors pointing outwards in green light.</p>
+                        <p>Analogously, vectors to line caps must be appropriately calculated, where they point to in order to have the caps pointing in the right direction.</p>
+                        <p>Also, when rounds cap or joins are used, the arc angle must be calculated as the minimum angle.</p>
+                        <h2>Closed contours</h2>
+                        <p>In order to have closed contours properly tessellated, some extra work must done. A closed contour will be that which has the first and last point to be the same one, either same reference, or same coordinates. The process is simple:</p>
+                        <ul>
+                            <li>calculate a new point which is going to be the middle between the first and second contour points.
+                            <li>remove the first point.
+                            <li>add twice, at the beginning and at the end of the contour points the calculated point.
+                        </ul>
+                        <p>The results would be: w/o processing:<br/>
+                            <a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/wp-content/uploads/2015/03/pathclosederror.png"><img src="https://web.archive.org/web/20171227012243im_/http://labs.hyperandroid.com/wp-content/uploads/2015/03/pathclosederror.png" alt="pathclosederror" width="290" height="289" class="aligncenter size-full wp-image-1325"/></a></p>
+                        <p>And processing the collection of points:<br/>
+                            <a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/wp-content/uploads/2015/03/pathclosedok.png"><img src="https://web.archive.org/web/20171227012243im_/http://labs.hyperandroid.com/wp-content/uploads/2015/03/pathclosedok.png" alt="pathclosedok" width="292" height="292" class="aligncenter size-full wp-image-1326"/></a></p>
+                        <p>Important to note that closed contours don&#8217;t have any line cap applied.</p>
+                        <h2>Trivial optimizations</h2>
+                        <p>As far as i can tell, the most trivial optimization will be switching to bevel joins and butt caps when the size of the calculated line width is too small (&lt;1.5).
+                            Also it is important to calculate rounded arcs tessellated triangles based on the length of the arc for the current transformation matrix. You don't want to have super perfectly tessellated arcs with 200 triangles each.
+
+
+                        <h2>Limitations</h2>
+                        <p>The algorithm is totally unoptimized.<br/>
+                            It is also not suited for situations where there are a lot of segments taking over the same area, for example with very twisted segments. In this case, the tessellation won&#8217;t be correct.<br/>
+                            Sometimes there&#8217;s overdraw on the generated triangles. If transparency is used, some overdraw will appear. You could first draw the triangles to the stencil though (weak solution, I know).</p>
+                        <h2>Playground</h2>
+
+                        <div>
+                            <div><canvas id="cc"></canvas></div>
+                            <div>
+                                <div>
+        <span style="margin-right:15px;">
+            <span>Line cap</span>
+            <select id="pcap">
+                <option value="butt">butt</option>
+                <option value="square">square</option>
+                <option value="round">round</option>
+            </select>
+        </span>
+                                    <span style="margin-right:15px;">
+            <span>Line join</span>
+            <select id="pjoin">
+                <option value="bevel">bevel</option>
+                <option value="miter">miter</option>
+                <option value="round">round</option>
+            </select>
+        </span>
+                                    <span style="margin-right:15px;">
+            <span>Miter limit</span>
+            <select id="pmiter">
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10" selected>10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+            </select>
+        </span>
+                                </div>
+                                <div>
+        <span style="margin-right:15px;">
+            <span>Draw with canvas</span>
+            <input type="checkbox" id="pcanvas">
+        </span>
+                                    <span style="margin-right:15px;">
+            <span>Line width</span>
+            <input type="range" min="1" max="40" step="1" value="10" id="plineWidth">
+        </span>
+                                    <span style="margin-right:15px;">
+            <span>Line points</span>
+            <select id="ppoints">
+                <option value="50" selected>50</option>
+                <option value="100">100</option>
+                <option value="150">150</option>
+                <option value="200">200</option>
+            </select>
+        </span>
+                                </div>
+                                <div><span style="margin-right:15px;">
+            <button id="pclear">Clear</button>
+        </span>     </div>
+                            </div>
+                        </div>
+
+                        <script>
+                          (function() {
+                            /**
+                             *
+                             * License: see license.txt file.
+                             *
+                             */
+
+
+                            var EPSILON = 0.0001;
+
+                            /*
+                             StrokeGeometryAttributes {
+                             width? : number;        // 1 if not defined
+                             cap? : string;          // butt, round, square
+                             join?: string;          // bevel, round, miter
+                             mitterLimit? : number   // for join miter, the maximum angle value to use the miter
+                             }
+                             */
+
+                            var Point = function (x, y) {
+
+                              this.x = typeof x === "undefined" ? 0 : x;
+                              this.y = typeof y === "undefined" ? 0 : y;
+                            };
+
+                            Point.prototype = {
+
+                              scalarMult: function (f) {
+                                this.x *= f;
+                                this.y *= f;
+
+                                return this;
+                              },
+
+                              perpendicular: function () {
+                                var x = this.x;
+                                this.x = -this.y;
+                                this.y = x;
+
+                                return this;
+                              },
+
+                              invert: function () {
+                                this.x = -this.x;
+                                this.y = -this.y;
+
+                                return this;
+                              },
+
+                              length: function () {
+                                return Math.sqrt(this.x * this.x + this.y * this.y);
+                              },
+
+                              normalize: function () {
+                                var mod = this.length();
+                                this.x /= mod;
+                                this.y /= mod;
+                                return this;
+                              },
+
+                              angle : function() {
+                                return this.y/this.x;
+                              }
+                            };
+
+                            Point.Angle = function( p0, p1 ) {
+                              return Math.atan2( p1.x-p0.x, p1.y-p0.y ) ;
+                            };
+
+                            Point.Add = function (p0, p1) {
+                              return new Point(p0.x + p1.x, p0.y + p1.y);
+                            };
+
+                            Point.Sub = function (p1, p0) {
+                              return new Point(p1.x - p0.x, p1.y - p0.y);
+                            };
+
+                            Point.Middle = function (p0, p1) {
+                              return Point.Add(p0, p1).scalarMult(.5);
+                            };
+
+                            function getStrokeGeometry(points, attrs) {
+
+                              // trivial reject
+                              if (points.length < 2) {
+                                return [];
+                              }
+
+                              var cap = attrs.cap || "butt";
+                              var join = attrs.join || "bevel";
+                              var lineWidth = (attrs.width || 1) / 2;
+                              var miterLimit = attrs.miterLimit || 10;
+                              var vertices = [];
+                              var middlePoints = [];  // middle points per each line segment.
+                              var closed= false;
+
+                              if (points.length === 2) {
+                                join = "bevel";
+                                createTriangles(points[0], Point.Middle(points[0], points[1]), points[1], vertices, lineWidth, join, miterLimit);
+                              } else {
+
+                                // if (points[0] === points[points.length - 1] ||
+                                // (points[0].x === points[points.length - 1].x && points[0].y === points[points.length - 1].y )) {
+//
+                                // var p0 = points.shift();
+                                // p0 = Point.Middle(p0, points[0]);
+                                // points.unshift(p0);
+                                // points.push(p0);
+                                // closed= true;
+                                // }
+
+                                var i;
+                                for (i = 0; i < points.length - 1; i++) {
+                                  if (i === 0) {
+                                    middlePoints.push(points[0]);
+                                  } else if (i === points.length - 2) {
+                                    middlePoints.push(points[points.length - 1])
+                                  } else {
+                                    middlePoints.push(Point.Middle(points[i], points[i + 1]));
+                                  }
+                                }
+
+                                for (i = 1; i < middlePoints.length; i++) {
+                                  createTriangles(middlePoints[i - 1], points[i], middlePoints[i], vertices, lineWidth, join, miterLimit);
+                                }
+                              }
+
+                              if ( !closed ) {
+
+                                if (cap === "round") {
+
+                                  var p00 = vertices[0];
+                                  var p01 = vertices[1];
+                                  var p02 = points[1];
+                                  var p10 = vertices[vertices.length - 1];
+                                  var p11 = vertices[vertices.length - 3];
+                                  var p12 = points[points.length - 2];
+
+                                  createRoundCap(points[0], p00, p01, p02, vertices);
+                                  createRoundCap(points[points.length - 1], p10, p11, p12, vertices);
+
+                                } else if (cap === "square") {
+
+                                  var p00 = vertices[vertices.length - 1];
+                                  var p01 = vertices[vertices.length - 3];
+
+                                  createSquareCap(
+                                    vertices[0],
+                                    vertices[1],
+                                    Point.Sub(points[0], points[1]).normalize().scalarMult(Point.Sub(points[0], vertices[0]).length()),
+                                    vertices);
+                                  createSquareCap(
+                                    p00,
+                                    p01,
+                                    Point.Sub(points[points.length - 1], points[points.length - 2]).normalize().scalarMult(Point.Sub(p01, points[points.length - 1]).length()),
+                                    vertices);
+                                }
+                              }
+
+                              return vertices;
+                            }
+
+                            function createSquareCap(p0, p1, dir, verts) {
+
+                              verts.push(p0);
+                              verts.push(Point.Add(p0, dir));
+                              verts.push(Point.Add(p1, dir));
+
+                              verts.push(p1);
+                              verts.push(Point.Add(p1, dir));
+                              verts.push(p0);
+                            }
+
+                            function createRoundCap(center, _p0, _p1, nextPointInLine, verts) {
+
+                              var radius = Point.Sub(center, _p0).length();
+
+                              var angle0 = Math.atan2((_p1.y - center.y), (_p1.x - center.x));
+                              var angle1 = Math.atan2((_p0.y - center.y), (_p0.x - center.x));
+
+                              var orgAngle0= angle0;
+
+                              // make the round caps point in the right direction.
+
+                              // calculate minimum angle between two given angles.
+                              // for example: -Math.PI, Math.PI = 0, -Math.PI/2, Math.PI= Math.PI/2, etc.
+                              if ( angle1 > angle0) {
+                                while ( angle1-angle0>=Math.PI-EPSILON) {
+                                  angle1=angle1-2*Math.PI;
+                                }
+                              }
+                              else {
+                                while ( angle0-angle1>=Math.PI-EPSILON) {
+                                  angle0=angle0-2*Math.PI;
+                                }
+                              }
+
+                              var angleDiff = angle1-angle0;
+
+                              // for angles equal Math.PI, make the round point in the right direction.
+                              if (Math.abs(angleDiff) >= Math.PI - EPSILON && Math.abs(angleDiff) <= Math.PI + EPSILON) {
+                                var r1 = Point.Sub(center, nextPointInLine);
+                                if ( r1.x===0 ) {
+                                  if (r1.y>0) {
+                                    angleDiff= -angleDiff;
+                                  }
+                                } else if ( r1.x>=-EPSILON ) {
+                                  angleDiff= -angleDiff;
+                                }
+                              }
+
+
+                              // calculate points, and make the cap.
+                              var nsegments = (Math.abs(angleDiff * radius) / 7) >> 0;
+                              nsegments++;
+
+                              var angleInc = angleDiff / nsegments;
+
+                              for (var i = 0; i < nsegments; i++) {
+                                verts.push(new Point(center.x, center.y));
+                                verts.push(new Point(
+                                  center.x + radius * Math.cos(orgAngle0 + angleInc * i),
+                                  center.y + radius * Math.sin(orgAngle0 + angleInc * i)
+                                ));
+                                verts.push(new Point(
+                                  center.x + radius * Math.cos(orgAngle0 + angleInc * (1 + i)),
+                                  center.y + radius * Math.sin(orgAngle0 + angleInc * (1 + i))
+                                ));
+                              }
+                            }
+
+                            function signedArea(p0, p1, p2) {
+                              return (p1.x - p0.x) * (p2.y - p0.y) - (p2.x - p0.x) * (p1.y - p0.y);
+                            }
+
+                            function lineIntersection(p0, p1, p2, p3) {
+
+                              var a0 = p1.y - p0.y;
+                              var b0 = p0.x - p1.x;
+
+                              var a1 = p3.y - p2.y;
+                              var b1 = p2.x - p3.x;
+
+                              var det = a0 * b1 - a1 * b0;
+                              if (det > -EPSILON && det < EPSILON) {
+                                return null;
+                              } else {
+                                var c0 = a0 * p0.x + b0 * p0.y;
+                                var c1 = a1 * p2.x + b1 * p2.y;
+
+                                var x = (b1 * c0 - b0 * c1) / det;
+                                var y = (a0 * c1 - a1 * c0) / det;
+                                return new Point(x, y);
+                              }
+                            }
+
+                            function createTriangles(p0, p1, p2, verts, width, join, miterLimit) {
+
+                              var t0 = Point.Sub(p1, p0);
+                              var t2 = Point.Sub(p2, p1);
+
+                              t0.perpendicular().normalize().scalarMult(width);
+                              t2.perpendicular().normalize().scalarMult(width);
+
+                              // triangle composed by the 3 points if clockwise or couterclockwise.
+                              // if counterclockwise, we must invert the line threshold points, otherwise the intersection point
+                              // could be erroneous and lead to odd results.
+                              if (signedArea(p0, p1, p2) > 0) {
+                                t0.invert();
+                                t2.invert();
+                              }
+
+                              var pintersect = lineIntersection(Point.Add(p0, t0), Point.Add(p1, t0), Point.Add(p2, t2), Point.Add(p1, t2));
+
+                              var anchor = null;
+                              var anchorLength= Number.MAX_VALUE;
+                              if ( pintersect ) {
+                                anchor= Point.Sub(pintersect, p1);
+                                anchorLength= anchor.length();
+                              }
+                              var dd = (anchorLength / width)|0;
+                              var p0p1= Point.Sub( p0,p1 );
+                              var p0p1Length= p0p1.length();
+                              var p1p2= Point.Sub( p1,p2 );
+                              var p1p2Length= p1p2.length();
+
+                              /**
+                               * the cross point exceeds any of the segments dimension.
+                               * do not use cross point as reference.
+                               * This case deserves more attention to avoid redraw, currently works by overdrawing large parts.
+                               */
+                              if ( anchorLength>p0p1Length || anchorLength>p1p2Length ) {
+
+                                verts.push(Point.Add(p0, t0));
+                                verts.push(Point.Sub(p0, t0));
+                                verts.push(Point.Add(p1, t0));
+
+                                verts.push(Point.Sub(p0, t0));
+                                verts.push(Point.Add(p1, t0));
+                                verts.push(Point.Sub(p1, t0));
+
+                                if ( join === "round" ) {
+                                  createRoundCap(p1, Point.Add(p1,t0), Point.Add(p1,t2), p2, verts);
+                                } else if ( join==="bevel" || (join==="miter" && dd>=miterLimit) ) {
+                                  verts.push( p1 );
+                                  verts.push( Point.Add(p1,t0) );
+                                  verts.push( Point.Add(p1,t2) );
+                                } else if (join === 'miter' && dd<miterLimit && pintersect) {
+
+                                  verts.push( Point.Add(p1,t0) );
+                                  verts.push( p1 );
+                                  verts.push( pintersect );
+
+                                  verts.push( Point.Add(p1,t2) );
+                                  verts.push( p1 );
+                                  verts.push( pintersect );
+                                }
+
+                                verts.push(Point.Add(p2, t2));
+                                verts.push(Point.Sub(p1, t2));
+                                verts.push(Point.Add(p1, t2));
+
+                                verts.push(Point.Add(p2, t2));
+                                verts.push(Point.Sub(p1, t2));
+                                verts.push(Point.Sub(p2, t2));
+
+
+                              } else {
+
+                                verts.push(Point.Add(p0, t0));
+                                verts.push(Point.Sub(p0, t0));
+                                verts.push(Point.Sub(p1, anchor));
+
+                                verts.push(Point.Add(p0, t0));
+                                verts.push(Point.Sub(p1, anchor));
+                                verts.push(Point.Add(p1, t0));
+
+                                if (join === "round") {
+
+                                  var _p0 = Point.Add(p1, t0);
+                                  var _p1 = Point.Add(p1, t2);
+                                  var _p2 = Point.Sub(p1, anchor);
+
+                                  var center = p1;
+
+                                  verts.push(_p0);
+                                  verts.push(center);
+                                  verts.push(_p2);
+
+                                  createRoundCap(center, _p0, _p1, _p2, verts);
+
+                                  verts.push(center);
+                                  verts.push(_p1);
+                                  verts.push(_p2);
+
+                                } else {
+
+                                  if (join === "bevel" || (join === "miter" && dd >= miterLimit)) {
+                                    verts.push(Point.Add(p1, t0));
+                                    verts.push(Point.Add(p1, t2));
+                                    verts.push(Point.Sub(p1, anchor));
+                                  }
+
+                                  if (join === 'miter' && dd < miterLimit) {
+                                    verts.push(pintersect);
+                                    verts.push(Point.Add(p1, t0));
+                                    verts.push(Point.Add(p1, t2));
+                                  }
+                                }
+
+                                verts.push(Point.Add(p2, t2));
+                                verts.push(Point.Sub(p1, anchor));
+                                verts.push(Point.Add(p1, t2));
+
+                                verts.push(Point.Add(p2, t2));
+                                verts.push(Point.Sub(p1, anchor));
+                                verts.push(Point.Sub(p2, t2));
+                              }
+                            }
+
+
+                            //////////////////////////////////////////////////////////////////////////////////////////
+                            //////////////////////////////////////////////////////////////////////////////////////////
+                            /////////////////                                                    /////////////////////
+                            /////////////////        DRAWING CODE - DON'T WORRY ABOUT THIS       /////////////////////
+                            /////////////////                                                    /////////////////////
+                            //////////////////////////////////////////////////////////////////////////////////////////
+                            //////////////////////////////////////////////////////////////////////////////////////////
+
+                            function drawStroke(lineWidth, points, color) {
+
+                              var tris = getStrokeGeometry(points, {
+                                width: lineWidth,
+                                cap : lineCap,
+                                join : lineJoin,
+                                miterLimit : miterLimit
+                              });
+
+
+                              // every 3 points, is a tri
+                              ctx.strokeStyle=color;
+                              for (var i = 0; i < tris.length; i += 3) {
+                                ctx.beginPath();
+                                ctx.moveTo(tris[i].x, tris[i].y);
+                                ctx.lineTo(tris[i + 1].x, tris[i + 1].y);
+                                ctx.lineTo(tris[i + 2].x, tris[i + 2].y);
+                                ctx.closePath();
+
+                                ctx.stroke();
+                              }
+
+                              // draw points.
+                              for (var i = 0; i < points.length; i++) {
+                                ctx.fillStyle = "red";
+                                ctx.beginPath();
+                                ctx.arc(points[i].x, points[i].y, 3, 0, 2 * Math.PI, false);
+                                ctx.fill();
+                              }
+
+
+
+                            }
+
+                            var lineCap= "butt";
+                            var lineJoin= "bevel";
+                            var lines= false;
+                            var miterLimit= 10;
+                            var drawWithCanvas= false;
+                            var lineWidth= 10;
+                            var points = JSON.parse('[{"x":30,"y":268},{"x":29,"y":267},{"x":27,"y":255},{"x":27,"y":242},{"x":27,"y":230},{"x":30,"y":220},{"x":40,"y":206},{"x":49,"y":197},{"x":59,"y":189},{"x":73,"y":180},{"x":83,"y":176},{"x":92,"y":183},{"x":94,"y":198},{"x":94,"y":216},{"x":94,"y":227},{"x":94,"y":245},{"x":93,"y":261},{"x":92,"y":278},{"x":89,"y":292},{"x":86,"y":306},{"x":85,"y":317},{"x":81,"y":336},{"x":80,"y":347},{"x":78,"y":359},{"x":76,"y":377},{"x":75,"y":387},{"x":73,"y":397},{"x":70,"y":409},{"x":56,"y":401},{"x":49,"y":389},{"x":43,"y":373},{"x":43,"y":360},{"x":46,"y":347},{"x":50,"y":336},{"x":58,"y":324},{"x":69,"y":317},{"x":83,"y":316},{"x":97,"y":316},{"x":108,"y":316},{"x":129,"y":316},{"x":139,"y":314},{"x":152,"y":303},{"x":163,"y":288},{"x":167,"y":277},{"x":172,"y":260},{"x":175,"y":245},{"x":175,"y":234},{"x":175,"y":223},{"x":173,"y":212},{"x":162,"y":210},{"x":153,"y":222},{"x":148,"y":236},{"x":147,"y":252},{"x":146,"y":264},{"x":145,"y":277},{"x":145,"y":293},{"x":145,"y":304},{"x":145,"y":318},{"x":145,"y":330},{"x":145,"y":342},{"x":145,"y":355},{"x":145,"y":367},{"x":145,"y":380},{"x":148,"y":392},{"x":157,"y":397},{"x":170,"y":392},{"x":183,"y":380},{"x":194,"y":362},{"x":197,"y":348},{"x":200,"y":338},{"x":215,"y":342},{"x":228,"y":346},{"x":236,"y":339},{"x":237,"y":329},{"x":232,"y":320},{"x":222,"y":312},{"x":212,"y":311},{"x":203,"y":317},{"x":198,"y":326},{"x":194,"y":336},{"x":194,"y":349},{"x":197,"y":359},{"x":202,"y":369},{"x":210,"y":377},{"x":219,"y":383},{"x":229,"y":386},{"x":241,"y":386},{"x":254,"y":377},{"x":272,"y":363},{"x":284,"y":350},{"x":292,"y":337},{"x":301,"y":322},{"x":307,"y":312},{"x":311,"y":300},{"x":314,"y":289},{"x":317,"y":275},{"x":321,"y":260},{"x":322,"y":243},{"x":322,"y":229},{"x":318,"y":219},{"x":312,"y":209},{"x":301,"y":215},{"x":295,"y":228},{"x":291,"y":240},{"x":288,"y":254},{"x":287,"y":264},{"x":286,"y":274},{"x":286,"y":286},{"x":286,"y":300},{"x":286,"y":312},{"x":286,"y":325},{"x":287,"y":335},{"x":288,"y":346},{"x":292,"y":358},{"x":295,"y":371},{"x":302,"y":380},{"x":318,"y":380},{"x":333,"y":373},{"x":348,"y":363},{"x":360,"y":351},{"x":366,"y":340},{"x":370,"y":328},{"x":375,"y":316},{"x":378,"y":304},{"x":381,"y":293},{"x":385,"y":277},{"x":387,"y":265},{"x":389,"y":254},{"x":390,"y":240},{"x":390,"y":226},{"x":390,"y":215},{"x":380,"y":211},{"x":369,"y":220},{"x":362,"y":232},{"x":359,"y":246},{"x":359,"y":257},{"x":358,"y":268},{"x":358,"y":279},{"x":357,"y":291},{"x":356,"y":304},{"x":355,"y":317},{"x":352,"y":327},{"x":353,"y":337},{"x":357,"y":347},{"x":364,"y":357},{"x":372,"y":364},{"x":383,"y":366},{"x":398,"y":363},{"x":408,"y":352},{"x":417,"y":340},{"x":424,"y":331},{"x":432,"y":323},{"x":438,"y":314},{"x":432,"y":327},{"x":428,"y":338},{"x":427,"y":349},{"x":427,"y":361},{"x":440,"y":359},{"x":449,"y":353},{"x":458,"y":344},{"x":462,"y":333},{"x":464,"y":318},{"x":458,"y":307},{"x":447,"y":303},{"x":440,"y":314},{"x":444,"y":324},{"x":456,"y":326},{"x":467,"y":326},{"x":477,"y":324},{"x":486,"y":331},{"x":492,"y":341},{"x":492,"y":353},{"x":492,"y":369},{"x":485,"y":387},{"x":481,"y":397},{"x":477,"y":409},{"x":452,"y":424},{"x":437,"y":431},{"x":427,"y":434},{"x":412,"y":437},{"x":401,"y":437},{"x":387,"y":437},{"x":372,"y":434},{"x":356,"y":430},{"x":338,"y":426},{"x":326,"y":424},{"x":313,"y":423},{"x":289,"y":420},{"x":278,"y":419},{"x":267,"y":419},{"x":252,"y":421},{"x":238,"y":424},{"x":226,"y":429},{"x":216,"y":433},{"x":207,"y":440},{"x":203,"y":450},{"x":204,"y":460},{"x":215,"y":465},{"x":226,"y":465},{"x":241,"y":465}]');
+
+                            var maxPoints= 50;
+
+                            var canvas = document.getElementById("cc");
+                            canvas.width = 600;
+                            canvas.height = 600;
+                            var ctx = canvas.getContext("2d");
+
+
+                            function redraw() {
+                              ctx.fillStyle="#eee";
+                              ctx.fillRect( 0, 0, canvas.width, canvas.height );
+
+                              if ( drawWithCanvas ) {
+                                ctx.save();
+                                ctx.beginPath();
+                                ctx.lineWidth= lineWidth;
+                                ctx.miterLimit= miterLimit;
+                                ctx.lineCap= lineCap;
+                                ctx.lineJoin= lineJoin;
+                                ctx.moveTo( points[0].x, points[0].y );
+                                for( var i=1; i<points.length; i++ ) {
+                                  ctx.lineTo( points[i].x, points[i].y );
+                                }
+                                ctx.strokeStyle="#ccc";
+                                ctx.stroke();
+                                ctx.restore();
+                              }
+
+                              ctx.lineWidth=1;
+                              drawStroke(lineWidth, points, "#999");
+                            }
+
+
+                            redraw();
+
+                            //////////////////////////////////////////////////////////////////////////////////////////
+                            //////////////////////////////////////////////////////////////////////////////////////////
+                            /////////////////                                                    /////////////////////
+                            /////////////////      Input Code - Don't pay attention to this      /////////////////////
+                            /////////////////                                                    /////////////////////
+                            //////////////////////////////////////////////////////////////////////////////////////////
+                            //////////////////////////////////////////////////////////////////////////////////////////
+
+                            var _isDown= false;
+                            var prevX=0;
+                            var prevY=0;
+                            var firstTimeEver= true;
+
+                            function hasTouch() {
+                              return (('ontouchstart' in window) ||
+                                (navigator.maxTouchPoints > 0) ||
+                                (navigator.msMaxTouchPoints > 0));
+                            }
+
+                            if ( hasTouch() ) {
+                              canvas.addEventListener( "touchstart", function(e) {
+                                e.preventDefault();
+                                if (e.stopPropagation) {e.stopPropagation()}
+                                e= e.targetTouches[0];
+                                down( e );
+                              }, false);
+
+                              canvas.addEventListener( "touchmove", function(e) {
+                                e.preventDefault();
+                                if (e.stopPropagation) {e.stopPropagation()}
+                                move( e.changedTouches[0] );
+                              }, false);
+
+                              canvas.addEventListener( "touchend", function(e) {
+                                e.preventDefault();
+                                if (e.stopPropagation) {e.stopPropagation()}
+                                _isDown= false;
+                              }, false);
+
+                              canvas.addEventListener( "touchcancel", function(e) {
+                                e.preventDefault();
+                                if (e.stopPropagation) {e.stopPropagation()}
+                                _isDown= false;
+                              }, false);
+
+                            } else {
+
+                              canvas.addEventListener( "mouseup", function(e) {
+                                e.preventDefault();
+                                if (e.stopPropagation) {e.stopPropagation()}
+                                _isDown= false;
+                              }, false );
+
+                              canvas.addEventListener( "mousedown", function(e) {
+                                e.preventDefault();
+                                if (e.stopPropagation) {e.stopPropagation()}
+                                down( e );
+                              }, false );
+
+                              canvas.addEventListener( "mousemove", function(e) {
+                                e.preventDefault();
+                                if (e.stopPropagation) {e.stopPropagation()}
+                                move( e );
+                              }, false );
+                            }
+
+                            function down( e ) {
+
+                              if ( firstTimeEver ) {
+                                points= [];
+                                lineWidth= 20;
+                              }
+
+                              var r=e.target.getClientRects()[0];
+                              var x= e.offsetX || (e.clientX - (r.x||r.left));
+                              var y= e.offsetY || (e.clientY - (r.y||r.top));
+                              _isDown= true;
+
+                              points.push( new Point(x,y) );
+
+                            }
+
+                            function move( e ) {
+
+                              if ( _isDown ) {
+                                var r=e.target.getClientRects()[0];
+                                var x= e.offsetX || (e.clientX - (r.x||r.left));
+                                var y= e.offsetY || (e.clientY - (r.y||r.top));
+
+                                var difx= x-prevX, dify= y-prevY;
+
+                                var d= Math.sqrt( difx*difx + dify*dify );
+                                if ( d>10 ) {
+                                  if ( points.length>maxPoints ) {
+                                    points.shift();
+                                  }
+                                  points.push( new Point(x, y) );
+                                  prevX= x;
+                                  prevY= y;
+                                }
+
+
+                                redraw();
+                              }
+                            }
+
+                            document.getElementById("pcap").onchange= function(e) {
+                              lineCap= e.target[e.target.selectedIndex].value;
+                              redraw();
+                            };
+                            document.getElementById("pjoin").onchange= function(e) {
+                              lineJoin= e.target[e.target.selectedIndex].value;
+                              redraw();
+                            };
+                            document.getElementById("pmiter").onchange= function(e) {
+                              miterLimit= parseInt(e.target[e.target.selectedIndex].value);
+                              redraw();
+                            };
+                            document.getElementById("pclear").onclick= function(e) {
+                              points= [];
+                              redraw();
+                            };
+                            document.getElementById("pcanvas").onclick= function(e) {
+                              drawWithCanvas= e.target.checked;
+                              redraw();
+                            };
+                            document.getElementById("plineWidth").onchange= function(e) {
+                              lineWidth= e.target.value;
+                              redraw();
+                            };
+                            document.getElementById("ppoints").onchange= function(e) {
+                              maxPoints= parseInt(e.target[e.target.selectedIndex].value);
+                              while( points.length>maxPoints ) {
+                                points.shift();
+                              }
+                              redraw();
+                            };
+
+                          })();
+                        </script>
+
+                        <div class="addtoany_share_save_container addtoany_content_bottom"><div class="a2a_kit addtoany_list a2a_target" id="wpa2a_2"><a class="a2a_button_twitter" href="https://web.archive.org/web/20171227012243/http://www.addtoany.com/add_to/twitter?linkurl=http%3A%2F%2Flabs.hyperandroid.com%2Fefficient-webgl-stroking&amp;linkname=Efficient%20WebGL%20stroking" title="Twitter" rel="nofollow" target="_blank"><img src="https://web.archive.org/web/20171227012243im_/http://labs.hyperandroid.com/wp-content/plugins/add-to-any/icons/twitter.png" width="16" height="16" alt="Twitter"/></a><a class="a2a_button_google_plus" href="https://web.archive.org/web/20171227012243/http://www.addtoany.com/add_to/google_plus?linkurl=http%3A%2F%2Flabs.hyperandroid.com%2Fefficient-webgl-stroking&amp;linkname=Efficient%20WebGL%20stroking" title="Google+" rel="nofollow" target="_blank"><img src="https://web.archive.org/web/20171227012243im_/http://labs.hyperandroid.com/wp-content/plugins/add-to-any/icons/google_plus.png" width="16" height="16" alt="Google+"/></a><a class="a2a_button_facebook" href="https://web.archive.org/web/20171227012243/http://www.addtoany.com/add_to/facebook?linkurl=http%3A%2F%2Flabs.hyperandroid.com%2Fefficient-webgl-stroking&amp;linkname=Efficient%20WebGL%20stroking" title="Facebook" rel="nofollow" target="_blank"><img src="https://web.archive.org/web/20171227012243im_/http://labs.hyperandroid.com/wp-content/plugins/add-to-any/icons/facebook.png" width="16" height="16" alt="Facebook"/></a><a class="a2a_dd addtoany_share_save" href="https://web.archive.org/web/20171227012243/https://www.addtoany.com/share_save" style="background:url(https://web.archive.org/web/20171227012243im_/http://labs.hyperandroid.com/wp-content/plugins/add-to-any/favicon.png) no-repeat scroll 4px 0px;padding:0 0 0 25px;display:inline-block;height:16px;vertical-align:middle"><span>Share</span></a></div></div>	</div><!-- .entry-content -->
+
+
+                    <footer class="entry-footer">
+                        <span class="posted-on"><span class="screen-reader-text">Posted on </span><a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/efficient-webgl-stroking" rel="bookmark"><time class="entry-date published" datetime="2015-03-10T05:19:23+00:00">10 March, 2015</time><time class="updated" datetime="2015-03-20T18:03:55+00:00">20 March, 2015</time></a></span><span class="byline"><span class="author vcard"><span class="screen-reader-text">Author </span><a class="url fn n" href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/author/admin">hyperandroid</a></span></span><span class="cat-links"><span class="screen-reader-text">Categories </span><a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/category/sin-categoria" rel="category tag">Sin categoría</a></span><span class="tags-links"><span class="screen-reader-text">Tags </span><a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/tag/opengl" rel="tag">OpenGL</a>, <a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/tag/opengl-lines" rel="tag">OpenGL lines</a>, <a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/tag/stroke" rel="tag">Stroke</a>, <a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/tag/webgl" rel="tag">webgl</a>, <a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/tag/webgl-lines" rel="tag">WebGL lines</a></span>			</footer><!-- .entry-footer -->
+
+                </article><!-- #post-## -->
+
+                <div id="disqus_thread">
+                    <div id="dsq-content">
+
+
+                        <ul id="dsq-comments">
+                            <li class="post pingback">
+                                <p>Pingback: <a href="https://web.archive.org/web/20171227012243/http://chris.cothrun.com/2015/03/11/bookmarks-for-march-11th-8/" rel="external nofollow" class="url">Bookmarks for March 11th | Chris&#039;s Digital Detritus</a>()</p>
+                            </li>
+                            </li><!-- #comment-## -->
+                            <li class="comment even thread-even depth-1" id="dsq-comment-962">
+                                <div id="dsq-comment-header-962" class="dsq-comment-header">
+                                    <cite id="dsq-cite-962">
+                                        <span id="dsq-author-user-962">Daniel JH Kwon</span>
+                                    </cite>
+                                </div>
+                                <div id="dsq-comment-body-962" class="dsq-comment-body">
+                                    <div id="dsq-comment-message-962" class="dsq-comment-message"><p>Hi~<br/>
+                                        I&#8217;m a software developer living in South Korea.<br/>
+                                        I have one question.<br/>
+                                        I want to select the WebGL Line. And I want to move the selected Line, or selectively removed.<br/>
+                                        Is there any way?<br/>
+                                        Please I want to find a way.</p>
+                                    </div>
+                                </div>
+
+                            </li><!-- #comment-## -->
+                            <li class="comment odd alt thread-odd thread-alt depth-1" id="dsq-comment-963">
+                                <div id="dsq-comment-header-963" class="dsq-comment-header">
+                                    <cite id="dsq-cite-963">
+                                        <span id="dsq-author-user-963">hyperandroid</span>
+                                    </cite>
+                                </div>
+                                <div id="dsq-comment-body-963" class="dsq-comment-body">
+                                    <div id="dsq-comment-message-963" class="dsq-comment-message"><p>Hi there,<br/>
+                                        currently there&#8217;s no interactive system for this.<br/>
+                                        It is just a method to tessellate webgl 2d lines with the same canvas stroking capabilities like mitters, joins and line widths.<br/>
+                                        I think you are looking for a mixture of this:<br/>
+                                        <a href="https://web.archive.org/web/20171227012243/http://hyperandroid.github.io/CAAT/documentation/demos/demo5/text-on-path_org.html" rel="nofollow">http://hyperandroid.github.io/CAAT/documentation/demos/demo5/text-on-path_org.html</a><br/>
+                                        <a href="https://web.archive.org/web/20171227012243/http://hyperandroid.github.io/CAAT/documentation/demos/demo24/path.html" rel="nofollow">http://hyperandroid.github.io/CAAT/documentation/demos/demo24/path.html</a><br/>
+                                        <a href="https://web.archive.org/web/20171227012243/http://hyperandroid.github.io/CAAT/documentation/demos/demo20/flightcontrol.html" rel="nofollow">http://hyperandroid.github.io/CAAT/documentation/demos/demo20/flightcontrol.html</a></p>
+                                        <p>and then use the webgl stroking to get the final geometry.<br/>
+                                            Sorry, i can&#8217;t be of any more help.</p>
+                                    </div>
+                                </div>
+
+                                <ul class="children">
+                                    <li class="comment even depth-2" id="dsq-comment-964">
+                                        <div id="dsq-comment-header-964" class="dsq-comment-header">
+                                            <cite id="dsq-cite-964">
+                                                <span id="dsq-author-user-964">Daniel JH Kwon</span>
+                                            </cite>
+                                        </div>
+                                        <div id="dsq-comment-body-964" class="dsq-comment-body">
+                                            <div id="dsq-comment-message-964" class="dsq-comment-message"><p>Thank you for your reply.<br/>
+                                                I&#8217;m making a annotation tool using WebGL and Canvas. but, it has some problem.<br/>
+                                                So&#8230; I&#8217;m looking for a solution.<br/>
+                                                If you have any idea or find solution, please share with me ^^</p>
+                                            </div>
+                                        </div>
+
+                                    </li><!-- #comment-## -->
+                                </ul><!-- .children -->
+                            </li><!-- #comment-## -->
+                        </ul>
+
+
+                    </div>
+
+                </div>
+
+                <script type="text/javascript">
+                  var disqus_url = 'https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/efficient-webgl-stroking';
+                  var disqus_identifier = '1206 http://labs.hyperandroid.com/?p=1206';
+                  var disqus_container_id = 'disqus_thread';
+                  var disqus_shortname = 'hyperandroid';
+                  var disqus_title = "Efficient WebGL stroking";
+                  var disqus_config_custom = window.disqus_config;
+                  var disqus_config = function () {
+                    /*
+                    All currently supported events:
+                    onReady: fires when everything is ready,
+                    onNewComment: fires when a new comment is posted,
+                    onIdentify: fires when user is authenticated
+                    */
+
+
+                    this.language = '';
+                    this.callbacks.onReady.push(function () {
+
+                      // sync comments in the background so we don't block the page
+                      var script = document.createElement('script');
+                      script.async = true;
+                      script.src = '?cf_action=sync_comments&post_id=1206';
+
+                      var firstScript = document.getElementsByTagName('script')[0];
+                      firstScript.parentNode.insertBefore(script, firstScript);
+                    });
+
+                    if (disqus_config_custom) {
+                      disqus_config_custom.call(this);
+                    }
+                  };
+
+                  (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript';
+                    dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                  })();
+                </script>
+
+
+                <nav class="navigation post-navigation" role="navigation">
+                    <h2 class="screen-reader-text">Post navigation</h2>
+                    <div class="nav-links"><div class="nav-previous"><a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/finite-state-machine" rel="prev"><span class="meta-nav" aria-hidden="true">Previous</span> <span class="screen-reader-text">Previous post:</span> <span class="post-title">Finite State Machine</span></a></div><div class="nav-next"><a href="https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/android-ndk-with-multiple-pre-built-libraries" rel="next"><span class="meta-nav" aria-hidden="true">Next</span> <span class="screen-reader-text">Next post:</span> <span class="post-title">Android NDK with multiple pre-built libraries</span></a></div></div>
+                </nav>
+            </main><!-- .site-main -->
+        </div><!-- .content-area -->
+
+
+    </div><!-- .site-content -->
+
+    <footer id="colophon" class="site-footer" role="contentinfo">
+        <div class="site-info">
+            <a href="https://web.archive.org/web/20171227012243/https://wordpress.org/">Proudly powered by WordPress</a>
+        </div><!-- .site-info -->
+    </footer><!-- .site-footer -->
+
+</div><!-- .site -->
+
+
+<script type="text/javascript"><!--
+wpa2a.targets=[
+  {title:'Efficient WebGL stroking',url:'https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/efficient-webgl-stroking'},
+  {title:'Efficient WebGL stroking',url:'https://web.archive.org/web/20171227012243/http://labs.hyperandroid.com/efficient-webgl-stroking'}];
+wpa2a.html_done=true;if(wpa2a.script_ready&&!wpa2a.done)wpa2a.init();wpa2a.script_load();
+//--></script>
+<script type="text/javascript">
+  // <![CDATA[
+  var disqus_shortname = 'hyperandroid';
+  (function () {
+    var nodes = document.getElementsByTagName('span');
+    for (var i = 0, url; i < nodes.length; i++) {
+      if (nodes[i].className.indexOf('dsq-postid') != -1) {
+        nodes[i].parentNode.setAttribute('data-disqus-identifier', nodes[i].getAttribute('data-dsqidentifier'));
+        url = nodes[i].parentNode.href.split('#', 1);
+        if (url.length == 1) { url = url[0]; }
+        else { url = url[1]; }
+        nodes[i].parentNode.href = url + '#disqus_thread';
+      }
+    }
+    var s = document.createElement('script');
+    s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+  }());
+  // ]]>
+</script>
+
+<!-- START: Syntax Highlighter ComPress -->
+<script type="text/javascript">
+  SyntaxHighlighter.autoloader(
+    'applescript			http://labs.hyperandroid.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushAppleScript.js',
+    'actionscript3 as3		http://labs.hyperandroid.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushAS3.js',
+    'bash shell				http://labs.hyperandroid.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushBash.js',
+    'coldfusion cf			http://labs.hyperandroid.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushColdFusion.js',
+    'cpp c					http://labs.hyperandroid.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushCpp.js',
+    'c# c-sharp csharp		http://labs.hyperandroid.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushCSharp.js',
+    'css					http://labs.hyperandroid.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushCss.js',
+    'delphi pascal pas		http://labs.hyperandroid.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushDelphi.js',
+    'diff patch			    http://labs.hyperandroid.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushDiff.js',
+    'erl erlang				http://labs.hyperandroid.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushErlang.js',
+    'groovy					http://labs.hyperandroid.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushGroovy.js',
+    'java					http://labs.hyperandroid.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushJava.js',
+    'jfx javafx				http://labs.hyperandroid.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushJavaFX.js',
+    'js jscript javascript	http://labs.hyperandroid.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushJScript.js',
+    'perl pl				http://labs.hyperandroid.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushPerl.js',
+    'php					http://labs.hyperandroid.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushPhp.js',
+    'text plain				http://labs.hyperandroid.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushPlain.js',
+    'powershell ps          http://labs.hyperandroid.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushPowerShell.js',
+    'py python				http://labs.hyperandroid.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushPython.js',
+    'ruby rails ror rb		http://labs.hyperandroid.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushRuby.js',
+    'sass scss              http://labs.hyperandroid.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushSass.js',
+    'scala					http://labs.hyperandroid.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushScala.js',
+    'sql					http://labs.hyperandroid.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushSql.js',
+    'vb vbnet				http://labs.hyperandroid.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushVb.js',
+    'xml xhtml xslt html	http://labs.hyperandroid.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushXml.js'
+  );
+  SyntaxHighlighter.defaults['smart-tabs'] = false;     SyntaxHighlighter.defaults['gutter'] = false;     SyntaxHighlighter.defaults['toolbar'] = false;     SyntaxHighlighter.defaults['tab-size'] = 4;
+  SyntaxHighlighter.all();
+</script>
+<!-- END: Syntax Highlighter ComPress -->
+
+<script type="text/javascript" src="https://web.archive.org/web/20171227012243js_/http://labs.hyperandroid.com/wp-content/themes/twentyfifteen/js/skip-link-focus-fix.js?ver=20141010"></script>
+<script type="text/javascript" src="https://web.archive.org/web/20171227012243js_/http://labs.hyperandroid.com/wp-includes/js/comment-reply.min.js?ver=4.2.18"></script>
+<script type="text/javascript">
+  /* <![CDATA[ */
+  var screenReaderText = {"expand":"<span class=\"screen-reader-text\">expand child menu<\/span>","collapse":"<span class=\"screen-reader-text\">collapse child menu<\/span>"};
+  /* ]]> */
+</script>
+<script type="text/javascript" src="https://web.archive.org/web/20171227012243js_/http://labs.hyperandroid.com/wp-content/themes/twentyfifteen/js/functions.js?ver=20150330"></script>
+
+</body>
+</html>
+<!--
+     FILE ARCHIVED ON 01:22:43 Dec 27, 2017 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 20:28:53 Mar 21, 2025.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 1.064
+  exclusion.robots: 0.031
+  exclusion.robots.policy: 0.018
+  esindex: 0.009
+  cdx.remote: 15.552
+  LoadShardBlock: 143.556 (3)
+  PetaboxLoader3.datanode: 180.717 (4)
+  load_resource: 347.709
+  PetaboxLoader3.resolve: 270.85
+-->
